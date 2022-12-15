@@ -28,7 +28,7 @@ function MastHead() {
         <header className="flex flex-col items-center w-full pt-[calc(2rem+50px)] md:pt-[calc(2rem+74px)] pb-[6rem] bg-[#1abc9c]">
             <div className="container flex flex-col items-center w-full">
                 <Avatar />
-                <h1 className=" text-3xl md:text-4xl text-white text-center ">
+                <h1 className=" text-6xl md:text-7xl text-white text-center ">
                     {mastheadData[0].name}
                 </h1>
                 <Divider

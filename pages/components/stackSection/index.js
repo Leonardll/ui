@@ -71,7 +71,7 @@ function CardItem({ cardUrl, cardTitle }) {
                 src={cardUrl}
                 height={150}
                 width={200}
-                responsive
+                alt={cardTitle}
                 object-fit="cover"
                 className="w-full h-full mt-3 object-fill"
             />
@@ -83,7 +83,7 @@ function CardItem({ cardUrl, cardTitle }) {
 }
 function Stack() {
     return (
-        <div id="stack" className="section">
+        <section id="stack">
             <div className="container  my-4 mx-auto">
                 <div className="text-center text-[#2c3e50] text-5xl mt-3">
                     <h1>Stack</h1>
@@ -100,7 +100,7 @@ function Stack() {
                     ))}
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

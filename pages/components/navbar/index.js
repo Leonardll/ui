@@ -73,8 +73,16 @@ function NavLinks({ open }) {
 
 const Logo = () => {
     return (
-        <div className="px-2 h-100 w-100 py-2 text-3xl">
-            <Image className="img-fluid" src="/logo.svg" height={100} width={150} fixed />
+        <div className="px-2 py-2 text-3xl">
+            <Image
+                className="img-fluid"
+                src="/logo.svg"
+                height={100}
+                width={150}
+                responsive="true"
+                alt="logo"
+                style={{ width: "6em", height: "4em" }}
+            />
         </div>
     )
 }
