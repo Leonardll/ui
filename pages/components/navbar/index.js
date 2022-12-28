@@ -62,7 +62,7 @@ function NavLinks({ open }) {
         >
             <ul className="flex flex-col md:flex-row items-center justify-between w-full dropdowm-menu">
                 {navbarData.map((item) => (
-                    <Link href={item.url} passHref key={item.id} className="px-2 py-2">
+                    <Link href={item.url} passHref key={item.id} className="px-4 font-bold py-2">
                         {item.title}
                     </Link>
                 ))}
@@ -73,17 +73,9 @@ function NavLinks({ open }) {
 
 const Logo = () => {
     return (
-        <div className="px-2 py-2 text-3xl">
-            <Image
-                className="img-fluid"
-                src="/logo.svg"
-                height={100}
-                width={150}
-                responsive="true"
-                alt="logo"
-                style={{ width: "6em", height: "4em" }}
-            />
-        </div>
+        <a className="text-3xl font-bold no-underline py-3 mx-5 flex-nowrap inline-block">
+            Full Stack Developer
+        </a>
     )
 }
 function NavMenu({ open, setOpen }) {

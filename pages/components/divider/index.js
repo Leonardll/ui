@@ -8,7 +8,7 @@ function Divider({ bgColor, borderColor, textColor }) {
             ></div>
             <div className="text-2xl">
                 <span className={`${textColor} mx-4`}>
-                    <AiFillStar />
+                    <AiFillStar className="h-9 w-9" />
                 </span>
             </div>
             <div

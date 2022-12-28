@@ -20,12 +20,12 @@ const cardData = [
 ]
 function CardItem({ imgSrc, title, description }) {
     return (
-        <div className="bg-gradient-to-r rounded-2xl max-w-[100%] md:w-[35%]   from-[#2c3e50] to-[#1abc9c] mx-auto p-2">
+        <div className="bg-gradient-to-r rounded-2xl w-full md:max-w-[400px]   from-[#2c3e50] to-[#1abc9c] mx-auto p-2">
             <div className="flex flex-col bg-white justify-center items-center w-full rounded-xl">
                 <Image
                     src={imgSrc}
-                    width={300}
-                    height={250}
+                    width={200}
+                    height={150}
                     responvive="true"
                     alt={title}
                     className="rounded-full m-5 h-full w-auto p-3"
@@ -35,7 +35,7 @@ function CardItem({ imgSrc, title, description }) {
                     <h3 className="p-3">{title}</h3>
                 </div>
                 <div className="flex flex-row w-full">
-                    <p className="text-left p-3">{description}</p>
+                    <p className="text-justify p-5">{description}</p>
                 </div>
 
                 <div className="bg-gradient-to-r rounded-full from-[#1abc9c] m-3 to-[#2c3e50] mx-auto  p-1">
@@ -53,7 +53,7 @@ function PreviousButton({ clickHandler }) {
                 clickHandler()
             }}
             type="button"
-            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh] opacity-[0.5] absolute  carousel-control-prev left-[1em] top-[20%] text-blue-600 bg-blue-300 flex items-center justify-center"
+            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh] opacity-[0.5] absolute  carousel-control-prev left-[1em] top-[50%] flex items-center justify-center"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
             cursor={"pointer"}
@@ -70,7 +70,7 @@ function NextButton({ clickHandler }) {
                 clickHandler()
             }}
             type="button"
-            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute text-blue-600  bg-blue-300 z-[2] translate-y-[10vh] flex items-center justify-center right-[1em] top-[20%]"
+            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[1em] top-[50%]"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next"
             cursor={"pointer"}
@@ -105,11 +105,11 @@ function Slide({ cardData, currentCardIndex }) {
 function Carousel({ cardData, currentCardIndex, prevSlideHandler, nextSlideHandler }) {
     return (
         <div className="container carousel w-full h-full my-10 mx-auto">
-            <PreviousButton className="left-[1em]" clickHandler={prevSlideHandler} />
+            <PreviousButton clickHandler={prevSlideHandler} />
             {/* track container*/}
             <Slide cardData={cardData} currentCardIndex={currentCardIndex} />
             {/* </div> */}
-            <NextButton clickHandler={nextSlideHandler} type="button" className="right-[1em]" />
+            <NextButton clickHandler={nextSlideHandler} />
         </div>
     )
 }

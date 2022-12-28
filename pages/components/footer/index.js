@@ -2,7 +2,7 @@ import Image from "next/image"
 
 function Footer() {
     return (
-        <footer className="flex h-24 w-full items-center justify-center border-t">
+        <footer className="flex h-24 bg-[#1a252f] w-full items-center text-white justify-center">
             <a
                 className="flex items-center justify-center gap-2"
                 href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
