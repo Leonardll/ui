@@ -80,7 +80,7 @@ const Logo = () => {
 }
 function NavMenu({ open, setOpen }) {
     return (
-        <nav className="w-full bg-[#2c3e50]  ">
+        <nav className="w-full fixed bg-[#2c3e50] z-10 top-0  ">
             <div className="container  mx-auto lg:m-auto flex flex-wrap items-center justify-between  max-w-4xl  text-white text-lg py-4">
                 <Logo />
                 <NavToggler open={open} setOpen={setOpen} />

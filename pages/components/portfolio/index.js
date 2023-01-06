@@ -13,7 +13,7 @@ const cardData = [
         github: "https://github.com/Leonardll/crypto-react",
     },
     {
-        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FHackMoney_Header-1%20(1).jpeg?alt=media&token=409e2df1-9e4b-4edf-b07e-8edd6f4c081a",
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2F1_RN_5KZaVN0xkUXKW4pnTFg.webp?alt=media&token=4ebb933b-888c-4659-891a-d98ba78ef65c",
         title: "Polypus",
         description:
             "Polypus is a decentralized application that allows users to borrow assets against the value of their own NFTs or to lend assets. The stack used is HTML, Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project received two awards for best Polygon and Arbitrum application as well as Compound Labs Pool Prize.",
@@ -86,9 +86,9 @@ function CardItem({ imgSrc, title, description }) {
                     className=" rounded-t-lg  overflow-hidden object-cover object-center h-full w-full"
                 />
 
-                <h3 className="p-3 text-center">{title}</h3>
+                <h2 className="p-3 text-xl text-center">{title}</h2>
 
-                <p className="text-justify w-full p-5">{description}</p>
+                <p className="text-justify text-lg w-full p-5">{description}</p>
                 <div className="flex justify-center items-center">
                     {iconsData.map((item) => (
                         <IconGradient key={item.id} children={item.icon} />
