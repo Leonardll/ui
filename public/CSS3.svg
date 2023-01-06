@@ -1,100 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="512"
-   height="512"
-   viewBox="0 0 362.73401 511.99998"
-   id="svg3476"
-   version="1.1"
-   inkscape:version="0.91 r13725"
-   sodipodi:docname="CSS3.svg">
-  <defs
-     id="defs3478" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.35"
-     inkscape:cx="181.367"
-     inkscape:cy="256"
-     inkscape:document-units="px"
-     inkscape:current-layer="layer1"
-     showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     
-     inkscape:window-x="0"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1" />
-  <metadata
-     id="metadata3481">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Calque 1"
-     inkscape:groupmode="layer"
-     id="layer1"
-     transform="translate(-193.633,-276.3622)">
-    <g
-       id="g3013"
-       transform="translate(119,276.3622)">
-      <polygon
-         id="polygon2989"
-         points="437.367,100.62 404.321,470.819 255.778,512 107.644,470.877 74.633,100.62 "
-         style="fill:#264de4" />
-      <polygon
-         id="polygon2991"
-         points="376.03,447.246 404.27,130.894 256,130.894 256,480.523 "
-         style="fill:#2965f1" />
-      <polygon
-         id="polygon2993"
-         points="150.31,268.217 154.38,313.627 256,313.627 256,268.217 "
-         style="fill:#ebebeb" />
-      <polygon
-         id="polygon2995"
-         points="256,176.305 255.843,176.305 142.132,176.305 146.26,221.716 256,221.716 "
-         style="fill:#ebebeb" />
-      <polygon
-         id="polygon2997"
-         points="256,433.399 256,386.153 255.801,386.206 205.227,372.55 201.994,336.333 177.419,336.333 156.409,336.333 162.771,407.634 255.791,433.457 "
-         style="fill:#ebebeb" />
-      <path
-         id="path2999"
-         d="m 160,0 55,0 0,23 -32,0 0,23 32,0 0,23 -55,0 z"
-         inkscape:connector-curvature="0" />
-      <path
-         id="path3001"
-         d="m 226,0 55,0 0,20 -32,0 0,4 32,0 0,46 -55,0 0,-21 32,0 0,-4 -32,0 z"
-         inkscape:connector-curvature="0" />
-      <path
-         id="path3003"
-         d="m 292,0 55,0 0,20 -32,0 0,4 32,0 0,46 -55,0 0,-21 32,0 0,-4 -32,0 z"
-         inkscape:connector-curvature="0" />
-      <polygon
-         id="polygon3005"
-         points="311.761,313.627 306.49,372.521 255.843,386.191 255.843,433.435 348.937,407.634 349.62,399.962 360.291,280.411 361.399,268.217 369.597,176.305 255.843,176.305 255.843,221.716 319.831,221.716 315.699,268.217 255.843,268.217 255.843,313.627 "
-         style="fill:#ffffff" />
-    </g>
-  </g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512px" height="512px" viewBox="0 0 512 512" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(14.901961%,30.196078%,89.411765%);fill-opacity:1;" d="M 437.367188 100.621094 L 404.320312 470.820312 L 255.777344 512 L 107.644531 470.878906 L 74.632812 100.621094 Z M 437.367188 100.621094 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(16.078431%,39.607843%,94.509804%);fill-opacity:1;" d="M 376.03125 447.246094 L 404.269531 130.894531 L 256 130.894531 L 256 480.523438 Z M 376.03125 447.246094 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(92.156863%,92.156863%,92.156863%);fill-opacity:1;" d="M 150.308594 268.21875 L 154.378906 313.628906 L 256 313.628906 L 256 268.21875 Z M 150.308594 268.21875 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(92.156863%,92.156863%,92.156863%);fill-opacity:1;" d="M 256 176.304688 L 142.132812 176.304688 L 146.261719 221.714844 L 256 221.714844 Z M 256 176.304688 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(92.156863%,92.156863%,92.156863%);fill-opacity:1;" d="M 256 433.398438 L 256 386.152344 L 255.800781 386.207031 L 205.226562 372.550781 L 201.992188 336.332031 L 156.410156 336.332031 L 162.769531 407.632812 L 255.789062 433.457031 Z M 256 433.398438 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 160 0 L 215 0 L 215 23 L 183 23 L 183 46 L 215 46 L 215 69 L 160 69 Z M 160 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 226 0 L 281 0 L 281 20 L 249 20 L 249 24 L 281 24 L 281 70 L 226 70 L 226 49 L 258 49 L 258 45 L 226 45 Z M 226 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 292 0 L 347 0 L 347 20 L 315 20 L 315 24 L 347 24 L 347 70 L 292 70 L 292 49 L 324 49 L 324 45 L 292 45 Z M 292 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 311.761719 313.628906 L 306.488281 372.519531 L 255.84375 386.191406 L 255.84375 433.433594 L 348.9375 407.632812 L 349.621094 399.960938 L 360.289062 280.410156 L 361.398438 268.21875 L 369.597656 176.304688 L 255.84375 176.304688 L 255.84375 221.714844 L 319.832031 221.714844 L 315.699219 268.21875 L 255.84375 268.21875 L 255.84375 313.628906 Z M 311.761719 313.628906 "/>
+</g>
 </svg>

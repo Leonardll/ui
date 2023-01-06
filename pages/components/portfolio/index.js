@@ -2,47 +2,100 @@ import SectionHeader from "../sectionHeader"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import { GrPrevious, GrNext } from "react-icons/gr"
+import { FaLink, FaGithub } from "react-icons/fa"
 const cardData = [
     {
-        imgSrc: "https://my-landing-page-52061.web.app/assets/img/pexels-photo-bg.jpeg",
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fcryptotracker.jpeg?alt=media&token=39dc4214-1a47-4560-8edb-43cbd6e99977",
         title: "Crypto Tracker",
         description:
-            "My React Crypto Tracker Introducing my first server side rendering app (SSR) designed with Next.js and deployed on Firebase. First time are always a chalange but today i am proud to display it on my portfolio. The data are fetch from CoinGecko rest API, it was designed using functional component rather than class, useState and useEffect hooks.",
+            "My React Crypto Tracker, Introducing my first server side rendering app designed with Next.js and deployed on Firebase. First time are always a chalange but today i am proud to display it on my portfolio. The data are fetch from CoinGecko rest API, it was designed using functional component rather than class, useState and useEffect hooks.",
         link: "https://myreactcryptotracker.web.app/",
+        github: "https://github.com/Leonardll/crypto-react",
     },
     {
-        imgSrc: "/1670757504364.jpg",
-        title: "Hack Money",
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FHackMoney_Header-1%20(1).jpeg?alt=media&token=409e2df1-9e4b-4edf-b07e-8edd6f4c081a",
+        title: "Polypus",
         description:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima fuga iste, beatae consectetur tempora officiis commodi repudiandae. Ipsam minima reprehenderit, iusto ut voluptatem temporibus porro autem perspiciatis aliquid ex repudiandae.",
-        link: "https://my-landing-page-52061.web.app/",
+            "Polypus is a decentralized application that allows users to borrow assets against the value of their own NFTs or to lend assets. The stack used is HTML, Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project received two awards for best Polygon and Arbitrum application as well as Compound Labs Pool Prize.",
+        link: "morning-king-0051.on.fleek.co",
+        github: "https://github.com/npasquie/best-nft-as-collateral",
+    },
+    {
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FchainlinkHackathon%20(1).png?alt=media&token=e5f34ae5-fba8-4b83-88ba-143768c49e98",
+        title: "The Raffle House",
+        description:
+            "The Raffle House is a decentralized application that allows users to create raffles and sell tickets to them. The stack used is HTML,  Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project is still in development but I am proud to be finalist and win the prizes for the best Polygon and Arbitrum project.",
+        link: "https://wild-dream-9169.on.fleek.co/",
+        github: "https://github.com/LEO-TEAM-CHAINLINK-HACKATHON/NFTLOTTERY1",
+    },
+    {
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fhands.jpg?alt=media&token=43dbebfe-5b91-42e2-bacd-85987a5fe76b",
+        title: "Unico Hogar",
+        description:
+            "First freelance assignment for a Barcelona-based Real Estate Concierge service. The stack used is HTML, CSS, Bootstrap, Framer-Motion, SCSS, Next JS, Vercel.",
+        link: "https://www.unicohogar.com/",
+        github: "https://github.com/Leonardll/unicoHogar",
+    },
+    {
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fcity-scoot-banner.jpg?alt=media&token=7e3bab11-c46f-4815-8be9-fa57abbf94bf",
+        title: "City Scoot",
+        description:
+            "City Scoot is my first child. This is my first public website. This app was part of the final assignment that granted me my Computer Science Foundation Degree. HTML, CSS, Bootstrap, SCSS, Javascript, and Firebase make up the stack.",
+        link: "https://cityscoot-d6c37.web.app/",
+        github: "https://github.com/Leonardll/City-Scoot",
     },
 ]
+
+const iconsData = [
+    {
+        id: 1,
+        icon: <FaLink />,
+    },
+    {
+        id: 2,
+        icon: <FaGithub />,
+    },
+]
+
+function CardGradient({ children }) {
+    return (
+        <div
+            className={`bg-gradient-to-r rounded-2xl max-w-[500px] md:max-w-[400px]   from-[#1abc9c]  to-[#2c3e50] mx-auto p-2`}
+        >
+            {children}
+        </div>
+    )
+}
+
+function IconGradient({ children }) {
+    return (
+        <div className="bg-gradient-to-r rounded-full from-[#1abc9c] m-5 to-[#2c3e50]   p-1">
+            <div className="flex h-full p-2 bg-black rounded-3xl">{children}</div>
+        </div>
+    )
+}
 function CardItem({ imgSrc, title, description }) {
     return (
-        <div className="bg-gradient-to-r rounded-2xl w-full md:max-w-[400px]   from-[#2c3e50] to-[#1abc9c] mx-auto p-2">
-            <div className="flex flex-col bg-white justify-center items-center w-full rounded-xl">
+        <CardGradient>
+            <div className="flex flex-col auto-rows-min text-white	 bg-[#1a252f] justify-center items-center w-full rounded-xl">
                 <Image
                     src={imgSrc}
                     width={200}
                     height={150}
-                    responvive="true"
                     alt={title}
-                    className="rounded-full m-5 h-full w-auto p-3"
+                    className=" rounded-t-lg  overflow-hidden object-cover object-center h-full w-full"
                 />
 
-                <div className="flex flex-row justify-center">
-                    <h3 className="p-3">{title}</h3>
-                </div>
-                <div className="flex flex-row w-full">
-                    <p className="text-justify p-5">{description}</p>
-                </div>
+                <h3 className="p-3 text-center">{title}</h3>
 
-                <div className="bg-gradient-to-r rounded-full from-[#1abc9c] m-3 to-[#2c3e50] mx-auto  p-1">
-                    <div className="flex h-full p-2 bg-white rounded-3xl">Link</div>
+                <p className="text-justify w-full p-5">{description}</p>
+                <div className="flex justify-center items-center">
+                    {iconsData.map((item) => (
+                        <IconGradient key={item.id} children={item.icon} />
+                    ))}
                 </div>
             </div>
-        </div>
+        </CardGradient>
     )
 }
 
@@ -104,7 +157,7 @@ function Slide({ cardData, currentCardIndex }) {
 
 function Carousel({ cardData, currentCardIndex, prevSlideHandler, nextSlideHandler }) {
     return (
-        <div className="container carousel w-full h-full my-10 mx-auto">
+        <div className="container carousel w-full  my-10 mx-auto">
             <PreviousButton clickHandler={prevSlideHandler} />
             {/* track container*/}
             <Slide cardData={cardData} currentCardIndex={currentCardIndex} />

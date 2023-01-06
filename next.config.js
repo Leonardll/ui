@@ -4,7 +4,12 @@ const nextConfig = {
     images: {
         dangerouslyAllowSVG: true,
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-        domains: ["my-landing-page-52061.web.app"],
+        domains: [
+            "my-landing-page-52061.web.app",
+            "firebasestorage.googleapis.com",
+            "assets.poap.xyz",
+            "www.unicohogar.com",
+        ],
     },
 }
 
