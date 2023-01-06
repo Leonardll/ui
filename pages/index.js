@@ -8,10 +8,7 @@ import About from "./components/about"
 import Portfolio from "./components/portfolio"
 import Contact from "./components/contact"
 import clientPromise from "../lib/mongodb"
-import { app, db } from "../firebaseConfig"
-import { cardData } from "./components/stackSection"
-import { uploadToFirebase, downloadUrl } from "../lib/uploadFile"
-import { getStorage, ref, uploadBytes } from "firebase/storage"
+
 export default function Home({ isConnected, stack }) {
     const [stackdata, setStackdata] = useState(stack)
     //console.log(stackdata)
