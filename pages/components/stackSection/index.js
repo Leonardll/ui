@@ -19,7 +19,7 @@ function CardItem({ cardUrl, cardTitle }) {
     )
 }
 function StackSection({ stackData }) {
-    console.log(stackData)
+    //console.log(stackData)
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
