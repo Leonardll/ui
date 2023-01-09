@@ -1,6 +1,6 @@
 import SectionHeader from "../sectionHeader"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { GrPrevious, GrNext } from "react-icons/gr"
 import { FaLink, FaGithub } from "react-icons/fa"
 const cardData = [
