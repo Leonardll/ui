@@ -3,18 +3,14 @@ import { useState } from "react"
 import NavBar from "./components/navbar"
 import MastHead from "./components/header"
 import Footer from "./components/footer"
-import Stack from "./components/stackSection"
+import StackSection from "./components/stackSection"
 import About from "./components/about"
 import Portfolio from "./components/portfolio"
 import Contact from "./components/contact"
 import clientPromise from "../lib/mongodb"
-import dynamic from "next/dynamic"
 
 export default function Home({ isConnected, stack }) {
     const [stackdata, setStackdata] = useState(stack)
-    const DynamicStack = dynamic(() => import("./components/stackSection"), {
-        stackData: stackdata,
-    })
 
     isConnected = isConnected
         ? console.log("Connected to MongoDB")
@@ -30,8 +26,7 @@ export default function Home({ isConnected, stack }) {
             <MastHead />
 
             <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-                {/* <Stack stackData={stack} /> */}
-                <DynamicStack stackData={stack} />
+                <StackSection stackData={stack} />
                 <About />
                 <Portfolio />
                 <Contact />

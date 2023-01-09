@@ -18,7 +18,7 @@ function CardItem({ cardUrl, cardTitle }) {
         </div>
     )
 }
-function Stack({ stackData }) {
+function StackSection({ stackData }) {
     console.log(stackData)
     return (
         <section id="stack">
@@ -42,4 +42,4 @@ function Stack({ stackData }) {
     )
 }
 
-export default Stack
+export default StackSection
