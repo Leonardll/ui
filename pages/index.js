@@ -26,7 +26,7 @@ export default function Home({ isConnected, stack }) {
             <MastHead />
 
             <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-                <StackSection stackData={stack} />
+                <StackSection stackData={stackdata} />
                 <About />
                 <Portfolio />
                 <Contact />
