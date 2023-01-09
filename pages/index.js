@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import NavBar from "./components/navbar"
 import MastHead from "./components/header"
 import Footer from "./components/footer"
@@ -8,16 +8,13 @@ import About from "./components/about"
 import Portfolio from "./components/portfolio"
 import Contact from "./components/contact"
 import clientPromise from "../lib/mongodb"
+import dynamic from "next/dynamic"
 
 export default function Home({ isConnected, stack }) {
     const [stackdata, setStackdata] = useState(stack)
-    //console.log(stackdata)
-
-    // useEffect(() => {
-    //     //     uploadToFirebase("../public/avatar.svg")
-    //     downloadUrl()
-    //     //     //uploadToFirebaseuploadToFirebase("../public/avatar.svg")
-    // }, [])
+    const DynamicStack = dynamic(() => import("./components/stackSection"), {
+        stackData: stackdata,
+    })
 
     isConnected = isConnected
         ? console.log("Connected to MongoDB")
@@ -33,7 +30,8 @@ export default function Home({ isConnected, stack }) {
             <MastHead />
 
             <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-                <Stack stackData={stack} />
+                {/* <Stack stackData={stack} /> */}
+                <DynamicStack stackData={stack} />
                 <About />
                 <Portfolio />
                 <Contact />
