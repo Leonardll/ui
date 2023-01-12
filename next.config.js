@@ -9,7 +9,6 @@ const nextConfig = withImages({
             "/": { page: "/" },
         }
     },
-    distDir: "out",
     images: {
         //unoptimized: true,
 
