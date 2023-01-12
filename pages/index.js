@@ -37,7 +37,7 @@ export default function Home({ data }) {
     )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     try {
         // await clientPromise
         // `await clientPromise` will use the default database passed in the MONGODB_URI
