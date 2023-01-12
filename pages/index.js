@@ -15,6 +15,9 @@ export default function Home({ data }) {
     //isConnected = isConnected
     //? console.log("Connected to MongoDB", stackdata)
     //: console.log("Not Connected to MongoDB")
+    if (stackdata === null || stackdata === undefined) {
+        return <div>Not found</div>
+    }
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
