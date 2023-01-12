@@ -10,7 +10,7 @@ import Contact from "./components/contact"
 // import clientPromise from "../lib/mongodb"
 
 export default function Home({ data }) {
-    // const [stackdata, setStackdata] = useState(data)
+    const [stackdata, setStackdata] = useState(data)
     //console.log(stackdata)
     //isConnected = isConnected
     //? console.log("Connected to MongoDB", stackdata)
@@ -26,7 +26,7 @@ export default function Home({ data }) {
             <MastHead />
 
             <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-                <StackSection stackData={data} />
+                <StackSection stackData={stackdata} />
                 <About />
                 <Portfolio />
                 <Contact />
