@@ -18,7 +18,7 @@ function CardItem({ cardUrl, cardTitle }) {
         </div>
     )
 }
-function StackSection(stackData) {
+const StackSection = (stackData) => {
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
