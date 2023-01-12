@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Divider from "../divider"
 
-function CardItem({ cardUrl, cardTitle }) {
+function CardItem({ cardUrl, cardTitle, myLoader }) {
     return (
         <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl p-5 mx-auto overflow-hidde ">
             <Image
+                loader={myLoader}
                 src={cardUrl}
                 height={150}
                 width={200}
@@ -18,7 +19,7 @@ function CardItem({ cardUrl, cardTitle }) {
         </div>
     )
 }
-const StackSection = (stackData) => {
+const StackSection = (stackData, myLoader) => {
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
@@ -33,7 +34,12 @@ const StackSection = (stackData) => {
 
                 <div className="grid grid-cols-2 auto-rows-fr md:grid-cols-4 gap-2 md:gap-4 place-items-stretch place-content-center m-5">
                     {stackData.stackData.data.map((card) => (
-                        <CardItem key={card._id} cardUrl={card.url} cardTitle={card.title} />
+                        <CardItem
+                            key={card._id}
+                            cardUrl={card.url}
+                            cardTitle={card.title}
+                            myLoader={myLoader}
+                        />
                     ))}
                 </div>
             </div>

@@ -1,11 +1,11 @@
 import Image from "next/image"
 import Divider from "../divider"
 
-function Avatar() {
+function Avatar({ myLoader }) {
     return (
         <Image
-            src="https://my-landing-page-52061.web.app/assets/img/avataaars.svg"
-            alt="avatar"
+            loader={myLoader}
+            src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
             width={450}
             height={450}
             responvive="true"
@@ -23,11 +23,11 @@ const mastheadData = [
     },
 ]
 
-function MastHead() {
+function MastHead({ myLoader }) {
     return (
         <header className="flex flex-col items-center w-full pt-[calc(2rem+50px)] md:pt-[calc(2rem+74px)] pb-[6rem] bg-[#1abc9c]">
             <div className="container flex flex-col items-center w-full">
-                <Avatar />
+                <Avatar myLoader={myLoader} />
                 <h1 className=" text-6xl md:text-7xl text-white text-center ">
                     {mastheadData[0].name}
                 </h1>
