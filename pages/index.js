@@ -57,7 +57,11 @@ export async function getServerSideProps(context) {
         const data = await res.json()
         //console.log(data)
         //const stack = JSON.parse(JSON.stringify(data))
-
+        if (data === null || data === undefined) {
+            return {
+                notFound: true,
+            }
+        }
         return {
             props: { data: data },
         }
