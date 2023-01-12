@@ -5,12 +5,12 @@ const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
     images: {
-        unoptimized: true,
+        //unoptimized: true,
 
-        //loader: "custom",
-        //loaderFile: "./loader.js",
+        loader: "custom",
+        loaderFile: "./loader.js",
         formats: ["image/avif", "image/webp"],
-        //disableStaticImages: true,
+        disableStaticImages: true,
         dangerouslyAllowSVG: true,
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
         domains: [

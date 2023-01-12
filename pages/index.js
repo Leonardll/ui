@@ -8,16 +8,15 @@ import About from "../components/about"
 import Portfolio from "../components/portfolio"
 import Contact from "../components/contact"
 // import clientPromise from "../lib/mongodb"
-import { myImageLoader } from "../loader"
+import myImageLoader from "../loader"
 export default function Home({ data }) {
     const [stackdata, setStackdata] = useState(data)
     //console.log(stackdata)
     //isConnected = isConnected
     //? console.log("Connected to MongoDB", stackdata)
     //: console.log("Not Connected to MongoDB")
-    if (stackdata === null || stackdata === undefined) {
-        return <div>Not found</div>
-    }
+
+    console.log(myImageLoader)
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
