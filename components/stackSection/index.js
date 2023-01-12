@@ -9,7 +9,7 @@ function CardItem({ cardUrl, cardTitle }) {
                 height={150}
                 width={200}
                 alt={cardTitle}
-                //object-fit="cover"
+                object-fit="cover"
                 className="w-full h-full mt-3   object-scale-down object-center"
             />
             <div className="text-center m-3">
