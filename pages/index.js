@@ -16,7 +16,6 @@ export default function Home({ data }) {
     //? console.log("Connected to MongoDB", stackdata)
     //: console.log("Not Connected to MongoDB")
 
-    console.log(myImageLoader)
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
