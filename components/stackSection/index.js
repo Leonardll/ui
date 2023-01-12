@@ -1,11 +1,10 @@
 import Image from "next/image"
 import Divider from "../divider"
 
-function CardItem({ cardUrl, cardTitle, myLoader }) {
+function CardItem({ cardUrl, cardTitle }) {
     return (
         <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl p-5 mx-auto overflow-hidde ">
             <Image
-                loader={myLoader}
                 src={cardUrl}
                 height={150}
                 width={200}
@@ -19,7 +18,7 @@ function CardItem({ cardUrl, cardTitle, myLoader }) {
         </div>
     )
 }
-const StackSection = (stackData, myLoader) => {
+const StackSection = (stackData, loader) => {
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
@@ -38,7 +37,7 @@ const StackSection = (stackData, myLoader) => {
                             key={card._id}
                             cardUrl={card.url}
                             cardTitle={card.title}
-                            myLoader={myLoader}
+                            loader={loader}
                         />
                     ))}
                 </div>
