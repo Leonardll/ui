@@ -4,6 +4,7 @@ const withImages = require("next-images")
 const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
+    distDir: "out",
     images: {
         //unoptimized: true,
 
