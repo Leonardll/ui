@@ -5,7 +5,7 @@ const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
     images: {
-        //unoptimized: true,
+        unoptimized: true,
 
         //loader: "custom",
         //loaderFile: "./loader.js",
