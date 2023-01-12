@@ -21,7 +21,7 @@ const cardData = [
         github: "https://github.com/npasquie/best-nft-as-collateral",
     },
     {
-        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FchainlinkHackathon%20(1).png?alt=media&token=e5f34ae5-fba8-4b83-88ba-143768c49e98",
+        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FchainlinkHackathon.png?alt=media&token=09bc96a0-2daa-40f1-853f-331a12977113",
         title: "The Raffle House",
         description:
             "The Raffle House is a decentralized application that allows users to create raffles and sell tickets to them. The stack used is HTML,  Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project is still in development but I am proud to be finalist and win the prizes for the best Polygon and Arbitrum project.",
@@ -78,13 +78,17 @@ function CardItem({ imgSrc, title, description }) {
     return (
         <CardGradient>
             <div className="flex flex-col auto-rows-min text-white	 bg-[#1a252f] justify-center items-center w-full rounded-xl">
-                <Image
-                    src={imgSrc}
-                    width={200}
-                    height={150}
-                    alt={title}
-                    className=" rounded-t-lg  overflow-hidden object-cover object-center h-full w-full"
-                />
+                <div
+                    className="w-full h-full rounded-t-lg"
+                    style={{
+                        backgroundImage: `url(${imgSrc})`,
+                        backgroundPosition: "center",
+                        backgroundSize: "cover",
+                        backgroundRepeat: "no-repeat",
+                        width: "100%",
+                        height: "300px",
+                    }}
+                ></div>
 
                 <h2 className="p-3 text-xl text-center">{title}</h2>
 

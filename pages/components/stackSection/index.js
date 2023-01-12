@@ -18,8 +18,7 @@ function CardItem({ cardUrl, cardTitle }) {
         </div>
     )
 }
-function StackSection({ stackData }) {
-    //console.log(stackData)
+function StackSection(stackData) {
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
@@ -33,7 +32,7 @@ function StackSection({ stackData }) {
                 />
 
                 <div className="grid grid-cols-2 auto-rows-fr md:grid-cols-4 gap-2 md:gap-4 place-items-stretch place-content-center m-5">
-                    {stackData.map((card) => (
+                    {stackData.stackData.data.map((card) => (
                         <CardItem key={card._id} cardUrl={card.url} cardTitle={card.title} />
                     ))}
                 </div>
