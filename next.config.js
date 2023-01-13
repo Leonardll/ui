@@ -9,7 +9,7 @@ const nextConfig = withImages({
     //         "/": { page: "/" },
     //     }
     // },
-    //distDir: "out",
+    distDir: "out",
     images: {
         //unoptimized: true,
 
