@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import NavBar from "../components/navbar"
 import MastHead from "../components/header"
 import Footer from "../components/footer"
@@ -9,15 +9,25 @@ import Portfolio from "../components/portfolio"
 import Contact from "../components/contact"
 // import clientPromise from "../lib/mongodb"
 import myImageLoader from "../loader"
-export default function Home({ data }) {
-    const [stackdata, setStackdata] = useState(data)
+export default function Home() {
+    const [stackdata, setStackdata] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setIsLoading(true)
+        fetch("/api/hello")
+            .then((res) => res.json())
+            .then((data) => {
+                setStackdata(data)
+                setIsLoading(false)
+            })
+    }, [])
+
     //console.log(stackdata)
     //isConnected = isConnected
     //? console.log("Connected to MongoDB", stackdata)
     //: console.log("Not Connected to MongoDB")
-    if (stackdata === null || stackdata === undefined) {
-        return <div>Loading</div>
-    }
+    if (isLoading) return <div>Loading...</div>
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
@@ -75,18 +85,3 @@ export default function Home({ data }) {
 //         }
 //     }
 // }
-
-export async function getStaticProps(context) {
-    const res = await fetch("https://divine-cherry-8294.on.fleek.co/api/hello")
-    const data = await res.json()
-    //console.log(data)
-    //const stack = JSON.parse(JSON.stringify(data))
-    if (data === null || data === undefined) {
-        return {
-            notFound: true,
-        }
-    }
-    return {
-        props: { data: data },
-    }
-}

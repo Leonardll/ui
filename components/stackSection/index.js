@@ -19,6 +19,8 @@ function CardItem({ cardUrl, cardTitle }) {
     )
 }
 const StackSection = (stackData, loader) => {
+    console.log(stackData)
+
     return (
         <section id="stack">
             <div className="container  my-4 mx-auto">
