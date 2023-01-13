@@ -77,7 +77,7 @@ export default function Home({ data }) {
 // }
 
 export async function getStaticProps(context) {
-    const res = await fetch("http://localhost:3000/api/hello")
+    const res = await fetch("https://divine-cherry-8294.on.fleek.co/api/hello")
     const data = await res.json()
     //console.log(data)
     //const stack = JSON.parse(JSON.stringify(data))
