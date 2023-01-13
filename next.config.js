@@ -4,7 +4,7 @@ const withImages = require("next-images")
 const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
-    exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+    exportPathMap: function () {
         return {
             "/": { page: "/" },
         }
