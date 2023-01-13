@@ -15,7 +15,9 @@ export default function Home({ data }) {
     //isConnected = isConnected
     //? console.log("Connected to MongoDB", stackdata)
     //: console.log("Not Connected to MongoDB")
-
+    if (stackdata === null || stackdata === undefined) {
+        return <div>Loading</div>
+    }
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
@@ -38,38 +40,53 @@ export default function Home({ data }) {
     )
 }
 
-export async function getServerSideProps(context) {
-    try {
-        // await clientPromise
-        // `await clientPromise` will use the default database passed in the MONGODB_URI
-        // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-        //
-        //const client = await clientPromise
-        //const db = client.db("my_Database")
+// export async function getServerSideProps(context) {
+//     try {
+//         // await clientPromise
+//         // `await clientPromise` will use the default database passed in the MONGODB_URI
+//         // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
+//         //
+//         //const client = await clientPromise
+//         //const db = client.db("my_Database")
 
-        //const collection = await db.collection("test").find({}).toArray()
-        //const newCollection = await db.createCollection("test")
-        //const data = await collection
-        //console.log(db.collection("test"))
-        //const newData = await db.collection("test").insertOne({ cardData })
-        //
-        // Then you can execute queries against your database like so:
-        const res = await fetch("http://localhost:3000/api/hello")
-        const data = await res.json()
-        //console.log(data)
-        //const stack = JSON.parse(JSON.stringify(data))
-        if (data === null || data === undefined) {
-            return {
-                notFound: true,
-            }
-        }
+//         //const collection = await db.collection("test").find({}).toArray()
+//         //const newCollection = await db.createCollection("test")
+//         //const data = await collection
+//         //console.log(db.collection("test"))
+//         //const newData = await db.collection("test").insertOne({ cardData })
+//         //
+//         // Then you can execute queries against your database like so:
+//         const res = await fetch("http://localhost:3000/api/hello")
+//         const data = await res.json()
+//         //console.log(data)
+//         //const stack = JSON.parse(JSON.stringify(data))
+//         if (data === null || data === undefined) {
+//             return {
+//                 notFound: true,
+//             }
+//         }
+//         return {
+//             props: { data: data },
+//         }
+//     } catch (e) {
+//         console.error(e)
+//         return {
+//             props: { isConnected: false },
+//         }
+//     }
+// }
+
+export async function getStaticProps(context) {
+    const res = await fetch("http://localhost:3000/api/hello")
+    const data = await res.json()
+    //console.log(data)
+    //const stack = JSON.parse(JSON.stringify(data))
+    if (data === null || data === undefined) {
         return {
-            props: { data: data },
+            notFound: true,
         }
-    } catch (e) {
-        console.error(e)
-        return {
-            props: { isConnected: false },
-        }
+    }
+    return {
+        props: { data: data },
     }
 }
