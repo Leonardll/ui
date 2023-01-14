@@ -4,11 +4,11 @@ const withImages = require("next-images")
 const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
-    // exportPathMap: function () {
-    //     return {
-    //         "/": { page: "/" },
-    //     }
-    // },
+    exportPathMap: function () {
+        return {
+            "/": { page: "/" },
+        }
+    },
     distDir: "out",
     images: {
         //unoptimized: true,
