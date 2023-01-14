@@ -14,7 +14,7 @@ export default function Home({ data }) {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
-        setIsLoading(true)
+        if (stackdata) setIsLoading(true)
         // fetch("/api/hello")
         //     .then((res) => res.json())
         //     .then((data) => {
