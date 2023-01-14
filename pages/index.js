@@ -9,25 +9,28 @@ import Portfolio from "../components/portfolio"
 import Contact from "../components/contact"
 // import clientPromise from "../lib/mongodb"
 import myImageLoader from "../loader"
-export default function Home({ data }) {
+import useSWR from "swr"
+
+const fetcher = (url) => fetch(url).then((res) => res.json())
+export default function Home() {
     const [stackdata, setStackdata] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
+    const { data, error } = useSWR("/api/hello", fetcher)
     useEffect(() => {
         if (stackdata) setIsLoading(true)
-        // fetch("/api/hello")
-        //     .then((res) => res.json())
-        //     .then((data) => {
+        //     // fetch("/api/hello")
+        //     //     .then((res) => res.json())
+        //     //     .then((data) => {
+
         setStackdata(data)
         setIsLoading(false)
-        // })
+        //     // })
     }, [])
 
-    //console.log(stackdata)
-    //isConnected = isConnected
-    //? console.log("Connected to MongoDB", stackdata)
-    //: console.log("Not Connected to MongoDB")
-    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>Loading...</div>
+    if (!data) return null
+
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center scroll-smooth">
             <Head>
@@ -39,7 +42,7 @@ export default function Home({ data }) {
             <MastHead loader={myImageLoader} />
 
             <main className="flex w-full flex-1 flex-col items-center justify-center text-center">
-                <StackSection stackData={stackdata} loader={myImageLoader} />
+                <StackSection data={data} loader={myImageLoader} />
                 <About />
                 <Portfolio loader={myImageLoader} />
                 <Contact />
@@ -48,40 +51,4 @@ export default function Home({ data }) {
             <Footer />
         </div>
     )
-}
-
-export async function getServerSideProps(context) {
-    try {
-        // await clientPromise
-        // `await clientPromise` will use the default database passed in the MONGODB_URI
-        // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-        //
-        //const client = await clientPromise
-        //const db = client.db("my_Database")
-
-        //const collection = await db.collection("test").find({}).toArray()
-        //const newCollection = await db.createCollection("test")
-        //const data = await collection
-        //console.log(db.collection("test"))
-        //const newData = await db.collection("test").insertOne({ cardData })
-        //
-        // Then you can execute queries against your database like so:
-        const res = await fetch("http://localhost:3000/api/hello")
-        const data = await res.json()
-        //console.log(data)
-        //const stack = JSON.parse(JSON.stringify(data))
-        if (data === null || data === undefined) {
-            return {
-                notFound: true,
-            }
-        }
-        return {
-            props: { data: data },
-        }
-    } catch (e) {
-        console.error(e)
-        return {
-            props: { isConnected: false },
-        }
-    }
 }
