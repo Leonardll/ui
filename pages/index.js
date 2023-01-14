@@ -9,18 +9,18 @@ import Portfolio from "../components/portfolio"
 import Contact from "../components/contact"
 // import clientPromise from "../lib/mongodb"
 import myImageLoader from "../loader"
-export default function Home() {
+export default function Home({ data }) {
     const [stackdata, setStackdata] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         setIsLoading(true)
-        fetch("/api/hello")
-            .then((res) => res.json())
-            .then((data) => {
-                setStackdata(data)
-                setIsLoading(false)
-            })
+        // fetch("/api/hello")
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        setStackdata(data)
+        setIsLoading(false)
+        // })
     }, [])
 
     //console.log(stackdata)
@@ -50,38 +50,38 @@ export default function Home() {
     )
 }
 
-// export async function getServerSideProps(context) {
-//     try {
-//         // await clientPromise
-//         // `await clientPromise` will use the default database passed in the MONGODB_URI
-//         // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
-//         //
-//         //const client = await clientPromise
-//         //const db = client.db("my_Database")
+export async function getServerSideProps(context) {
+    try {
+        // await clientPromise
+        // `await clientPromise` will use the default database passed in the MONGODB_URI
+        // However you can use another database (e.g. myDatabase) by replacing the `await clientPromise` with the following code:
+        //
+        //const client = await clientPromise
+        //const db = client.db("my_Database")
 
-//         //const collection = await db.collection("test").find({}).toArray()
-//         //const newCollection = await db.createCollection("test")
-//         //const data = await collection
-//         //console.log(db.collection("test"))
-//         //const newData = await db.collection("test").insertOne({ cardData })
-//         //
-//         // Then you can execute queries against your database like so:
-//         const res = await fetch("http://localhost:3000/api/hello")
-//         const data = await res.json()
-//         //console.log(data)
-//         //const stack = JSON.parse(JSON.stringify(data))
-//         if (data === null || data === undefined) {
-//             return {
-//                 notFound: true,
-//             }
-//         }
-//         return {
-//             props: { data: data },
-//         }
-//     } catch (e) {
-//         console.error(e)
-//         return {
-//             props: { isConnected: false },
-//         }
-//     }
-// }
+        //const collection = await db.collection("test").find({}).toArray()
+        //const newCollection = await db.createCollection("test")
+        //const data = await collection
+        //console.log(db.collection("test"))
+        //const newData = await db.collection("test").insertOne({ cardData })
+        //
+        // Then you can execute queries against your database like so:
+        const res = await fetch("http://localhost:3000/api/hello")
+        const data = await res.json()
+        //console.log(data)
+        //const stack = JSON.parse(JSON.stringify(data))
+        if (data === null || data === undefined) {
+            return {
+                notFound: true,
+            }
+        }
+        return {
+            props: { data: data },
+        }
+    } catch (e) {
+        console.error(e)
+        return {
+            props: { isConnected: false },
+        }
+    }
+}
