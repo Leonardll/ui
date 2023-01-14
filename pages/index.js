@@ -10,7 +10,7 @@ import Contact from "../components/contact"
 import myImageLoader from "../loader"
 import useSWR from "swr"
 
-const fetcher = (url) => fetch(url).then((res) => res.json())
+const fetcher = async (url) => fetch(url).then((res) => res.json())
 export default function Home() {
     const { data, error } = useSWR("/api/hello", fetcher)
 
