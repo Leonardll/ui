@@ -8,7 +8,7 @@ export default async function handler(req, res) {
         const collection = await db.collection("test")
         const data = await collection.find({}).limit(20).toArray()
         //console.log(data)
-        res.status(200).json({ data: data })
+        return res.status(200).json(data)
     } catch (e) {
         res.status(500).json({ message: e.message })
     }

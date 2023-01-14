@@ -33,7 +33,7 @@ const StackSection = (data, loader) => {
                 />
 
                 <div className="grid grid-cols-2 auto-rows-fr md:grid-cols-4 gap-2 md:gap-4 place-items-stretch place-content-center m-5">
-                    {data.data.data.map((card) => (
+                    {data.data.map((card) => (
                         <CardItem
                             key={card._id}
                             cardUrl={card.url}
