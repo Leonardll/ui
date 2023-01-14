@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { useState, useEffect } from "react"
 import NavBar from "../components/navbar"
 import MastHead from "../components/header"
 import Footer from "../components/footer"
@@ -13,20 +12,7 @@ import useSWR from "swr"
 
 const fetcher = (url) => fetch(url).then((res) => res.json())
 export default function Home() {
-    const [stackdata, setStackdata] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
-
     const { data, error } = useSWR("/api/hello", fetcher)
-    useEffect(() => {
-        if (stackdata) setIsLoading(true)
-        //     // fetch("/api/hello")
-        //     //     .then((res) => res.json())
-        //     //     .then((data) => {
-
-        setStackdata(data)
-        setIsLoading(false)
-        //     // })
-    }, [])
 
     if (error) return <div>Loading...</div>
     if (!data) return null
