@@ -21,7 +21,7 @@ function About() {
             id="about"
             className="grid grid-cols-1 w-full place-items-center bg-[#1abc9c] p-5"
         >
-            <div className="container">
+            <div className="container p-5">
                 <SectionHeader
                     title={"About"}
                     titleColor={"text-white"}

@@ -55,7 +55,7 @@ function FormItems() {
                 return input.placeholder === "Message" ? (
                     <textarea
                         key={input.id}
-                        className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-black min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
+                        className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
                         type={input.type}
                         placeholder={input.placeholder}
                         aria-label={input.ariaLabel}
@@ -93,12 +93,12 @@ function FormContainer() {
 
 function SubFooter() {
     return (
-        <div className="grid grid-cols-1 mx-auto md:grid-cols-3 w-full p-5 md:p-10 bg-[#2c3e50] place-content-center gap-3">
+        <div className="grid grid-cols-1 mx-auto md:grid-cols-3 w-full p-3 md:p-10 bg-[#2c3e50] place-content-center gap-3">
             {subFooterData.map((data) => {
                 return data.id === "aroundTheWeb" ? (
                     <div className="col-span-1 p-2 md:p-5 " key={data.id}>
-                        <h1 className="text-white text-3xl font-semibold p-3">{data.title}</h1>
-                        <div className="flex flex-col md:flex-row  justify-around items-center m-5">
+                        <h1 className="text-white text-3xl font-semibold">{data.title}</h1>
+                        <div className="flex flex-col md:flex-row  justify-around 2xl:justify-center items-center m-5">
                             <FaLinkedinIn className="text-white text-3xl rounded-2xl outline outline-4 m-2 h-full py-2 px-3 w-auto" />
 
                             <FaGithub className="text-white text-3xl  rounded-2xl outline outline-4 py-2 m-2 px-3 h-full w-auto" />
@@ -106,7 +106,7 @@ function SubFooter() {
                     </div>
                 ) : (
                     <div className="col-span-1 p-2 md:p-5 " key={data.id}>
-                        <h1 className="text-white text-3xl font-semibold p-3">{data.title}</h1>
+                        <h1 className="text-white text-3xl font-semibold ">{data.title}</h1>
                         <p className="text-white text-lg w-full inline-block ont-semibold  p-2 md:p-4 m-2">
                             {data.content}
                         </p>
