@@ -151,13 +151,12 @@ function CardItem({ imgSrc, title, description, id, link, github, isClamped, set
 function PreviousButton({ clickHandler }) {
     return (
         <GrPrevious
-            style={{ background: "rgba(0,0,0,0.5)" }}
-            fill={"white"}
             onClick={() => {
                 clickHandler()
             }}
+            style={{ zIndex: 2, backgroundColor: "white", opacity: 0.5 }}
             type="button"
-            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh] opacity-[1] absolute  carousel-control-prev left-[1em] top-[50%] flex items-center justify-center"
+            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh]  absolute carousel-control-prev left-[1em] top-[45%] md:top-[50%] flex items-center justify-center"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
             cursor={"pointer"}
@@ -169,18 +168,21 @@ function PreviousButton({ clickHandler }) {
 
 function NextButton({ clickHandler }) {
     return (
-        <GrNext
-            onClick={() => {
-                clickHandler()
-            }}
-            type="button"
-            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[1em] top-[50%]"
-            data-bs-target="#carouselExampleCaptions"
-            data-bs-slide="next"
-            cursor={"pointer"}
-        >
-            Next
-        </GrNext>
+        <div className="bg-white">
+            <GrNext
+                style={{ zIndex: 2, backgroundColor: "white", opacity: 0.5 }}
+                onClick={() => {
+                    clickHandler()
+                }}
+                type="button"
+                className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[1em] top-[45%] md:top-[50%] "
+                data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next"
+                cursor={"pointer"}
+            >
+                Next
+            </GrNext>
+        </div>
     )
 }
 
