@@ -2,6 +2,7 @@ import SectionHeader from "../sectionHeader"
 import { FaLinkedinIn, FaGithub } from "react-icons/fa"
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
 import { Formik, useFormik } from "formik"
+import * as yup from "yup"
 
 const inputData = [
     {
@@ -48,41 +49,57 @@ const subFooterData = [
             "'Knowledge economy is the only asset in which purchasing power only depends on your attention and time. Idriss Aberkane'",
     },
 ]
-
+let schema = yup.object().shape({
+    Name: yup.string().min(3, "too short").max(15, "too long").required(" Name Required"),
+    Email: yup.string().email("Invalid email").required(" Email Required"),
+    Phone: yup.number().min(11, "Phone must 11 digit min").required("Phone Required"),
+    Message: yup.string().required(),
+})
 function FormItems({ formik }) {
     return (
         <form action="" className="col-span-1 p-5 mx-auto">
             {inputData.map((input) => {
                 return input.placeholder === "Message" ? (
-                    <textarea
-                        name={input.placeholder}
-                        onChange={formik.handleChange}
-                        key={input.id}
-                        className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        aria-label={input.ariaLabel}
-                        value={formik.values[input.placeholder]}
-                    />
+                    <>
+                        <textarea
+                            name={input.placeholder}
+                            onChange={formik.handleChange}
+                            key={input.id}
+                            className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
+                            type={input.type}
+                            placeholder={input.placeholder}
+                            aria-label={input.ariaLabel}
+                            value={formik.values[input.placeholder]}
+                        />
+                        {formik.errors[input.placeholder] && formik.touched[input.placeholder] && (
+                            <div>error</div>
+                        )}
+                    </>
                 ) : (
-                    <input
-                        onChange={formik.handleChange}
-                        name={input.placeholder}
-                        key={input.id}
-                        className=" bg-transparent form-input placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white py-3  focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-slate-300 focus:border-opacity-50"
-                        type={input.type}
-                        placeholder={input.placeholder}
-                        aria-label={input.ariaLabel}
-                        value={formik.values[input.placeholder]}
-                    />
+                    <>
+                        <input
+                            onChange={formik.handleChange}
+                            name={input.placeholder}
+                            key={input.id}
+                            className=" bg-transparent form-input placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white py-3  focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-slate-300 focus:border-opacity-50"
+                            type={input.type}
+                            placeholder={input.placeholder}
+                            aria-label={input.ariaLabel}
+                            value={formik.values[input.placeholder]}
+                        />
+                        {formik.errors[input.placeholder] && formik.touched[input.placeholder] && (
+                            <div>error</div>
+                        )}
+                    </>
                 )
             })}
         </form>
     )
 }
-function Formbutton() {
+function Formbutton({ formik }) {
     return (
         <button
+            onClick={formik.handleSubmit}
             type="submit"
             className="bg-white w-[5em] text-[#1abc9c] text-xl font-semibold rounded px-4 py-2 m-5"
         >
@@ -98,30 +115,44 @@ function FormContainer() {
             Phone: "",
             Message: "",
         },
-        onSubmit: async (values) => {
-            console.log(values)
-            const data = values
+        validationSchema: schema,
+        mapPropsToValues: () => values,
+
+        // Custom sync validation
+        validate: (values) => {
+            const errors = {}
+
+            if (!values) {
+                errors.values = "Required"
+            }
+
+            return errors
+        },
+        onSubmit: async (values, actions) => {
             const res = await fetch("/api/contact", {
                 method: "post",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    data: data,
+                    data: values,
                     token: "token",
                 }),
             })
-            console.log(res)
+                .then((res) => res.json())
+                .then((data) => console.log(data))
+                .catch((err) => console.log(err))
+            actions.resetForm({ values: "" })
             alert("Message sent! Thank you\nWe will be in touch with you soon!")
         },
     })
-    console.log(formik.values)
+
     return (
         <Formik {...formik}>
             <div className="container mx-auto w-full md:w-1/2">
                 <div className="grid grid-cols-1  place-content-center place-items-center px-3 py-5">
                     <FormItems formik={formik} />
-                    <Formbutton />
+                    <Formbutton formik={formik} />
                 </div>
             </div>
         </Formik>
