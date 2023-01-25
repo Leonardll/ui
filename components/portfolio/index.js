@@ -151,11 +151,13 @@ function CardItem({ imgSrc, title, description, id, link, github, isClamped, set
 function PreviousButton({ clickHandler }) {
     return (
         <GrPrevious
+            style={{ background: "rgba(0,0,0,0.5)" }}
+            fill={"white"}
             onClick={() => {
                 clickHandler()
             }}
             type="button"
-            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh] opacity-[0.5] absolute  carousel-control-prev left-[1em] top-[50%] flex items-center justify-center"
+            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh] opacity-[1] absolute  carousel-control-prev left-[1em] top-[50%] flex items-center justify-center"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
             cursor={"pointer"}
@@ -265,7 +267,7 @@ function Portfolio() {
     }
 
     return (
-        <section id="Portfolio" className="w-full  bg-white p-5">
+        <section id="portfolio" className="w-full  bg-white p-5">
             <div className="container relative w-full mx-auto">
                 <div className="container my-4 mx-auto">
                     <SectionHeader

@@ -22,7 +22,7 @@ const navbarData = [
     {
         id: "portofolio",
         title: "Portfolio",
-        url: "/#portofolio",
+        url: "/#portfolio",
     },
     {
         id: "contact",
@@ -51,7 +51,7 @@ function NavToggler({ open, setOpen }) {
     )
 }
 
-function NavLinks({ open }) {
+function NavLinks({ open, setOpen }) {
     return (
         <div
             className={
@@ -62,7 +62,15 @@ function NavLinks({ open }) {
         >
             <ul className="flex flex-col md:flex-row items-center justify-between w-full dropdowm-menu">
                 {navbarData.map((item) => (
-                    <Link href={item.url} passHref key={item.id} className="px-4 font-bold py-2">
+                    <Link
+                        onClick={() => {
+                            setOpen(false)
+                        }}
+                        href={item.url}
+                        passHref
+                        key={item.id}
+                        className="px-4 font-bold py-2"
+                    >
                         {item.title}
                     </Link>
                 ))}
@@ -84,7 +92,7 @@ function NavMenu({ open, setOpen }) {
             <div className="container  mx-auto lg:m-auto flex flex-wrap items-center justify-between  max-w-4xl  text-white text-lg py-4">
                 <Logo />
                 <NavToggler open={open} setOpen={setOpen} />
-                <NavLinks open={open} />
+                <NavLinks open={open} setOpen={setOpen} />
             </div>
         </nav>
     )
