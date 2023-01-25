@@ -1,6 +1,7 @@
 import SectionHeader from "../sectionHeader"
 import { FaLinkedinIn, FaGithub } from "react-icons/fa"
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
+import { Formik, useFormik } from "formik"
 
 const inputData = [
     {
@@ -18,7 +19,7 @@ const inputData = [
     {
         id: "3",
         type: "tel",
-        placeholder: "Phone Number",
+        placeholder: "Phone",
         ariaLabel: "Phone Number",
     },
     {
@@ -48,25 +49,31 @@ const subFooterData = [
     },
 ]
 
-function FormItems() {
+function FormItems({ formik }) {
     return (
         <form action="" className="col-span-1 p-5 mx-auto">
             {inputData.map((input) => {
                 return input.placeholder === "Message" ? (
                     <textarea
+                        name={input.placeholder}
+                        onChange={formik.handleChange}
                         key={input.id}
                         className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
                         type={input.type}
                         placeholder={input.placeholder}
                         aria-label={input.ariaLabel}
+                        value={formik.values[input.placeholder]}
                     />
                 ) : (
                     <input
+                        onChange={formik.handleChange}
+                        name={input.placeholder}
                         key={input.id}
                         className=" bg-transparent form-input placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white py-3  focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-slate-300 focus:border-opacity-50"
                         type={input.type}
                         placeholder={input.placeholder}
                         aria-label={input.ariaLabel}
+                        value={formik.values[input.placeholder]}
                     />
                 )
             })}
@@ -75,19 +82,49 @@ function FormItems() {
 }
 function Formbutton() {
     return (
-        <button className="bg-white w-[5em] text-[#1abc9c] text-xl font-semibold rounded px-4 py-2 m-5">
+        <button
+            type="submit"
+            className="bg-white w-[5em] text-[#1abc9c] text-xl font-semibold rounded px-4 py-2 m-5"
+        >
             Send{" "}
         </button>
     )
 }
 function FormContainer() {
+    const formik = useFormik({
+        initialValues: {
+            Name: "",
+            Email: "",
+            Phone: "",
+            Message: "",
+        },
+        onSubmit: async (values) => {
+            console.log(values)
+            const data = values
+            const res = await fetch("/api/contact", {
+                method: "post",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    data: data,
+                    token: "token",
+                }),
+            })
+            console.log(res)
+            alert("Message sent! Thank you\nWe will be in touch with you soon!")
+        },
+    })
+    console.log(formik.values)
     return (
-        <div className="container mx-auto w-full md:w-1/2">
-            <div className="grid grid-cols-1  place-content-center place-items-center px-3 py-5">
-                <FormItems />
-                <Formbutton />
+        <Formik {...formik}>
+            <div className="container mx-auto w-full md:w-1/2">
+                <div className="grid grid-cols-1  place-content-center place-items-center px-3 py-5">
+                    <FormItems formik={formik} />
+                    <Formbutton />
+                </div>
             </div>
-        </div>
+        </Formik>
     )
 }
 
