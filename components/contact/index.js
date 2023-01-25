@@ -55,7 +55,7 @@ function FormItems() {
                 return input.placeholder === "Message" ? (
                     <textarea
                         key={input.id}
-                        className=" bg-transparent placeholder-white border-b-4 border-white w-full text-3xl text-black min-h-[8em] py-3 focus:outline-none"
+                        className=" bg-transparent form-textarea placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-black min-h-[8em] py-3 focus:outline-0  focus:border-transparant focus:ring-transparent  focus:border-slate-300 focus:border-opacity-50"
                         type={input.type}
                         placeholder={input.placeholder}
                         aria-label={input.ariaLabel}
@@ -63,7 +63,7 @@ function FormItems() {
                 ) : (
                     <input
                         key={input.id}
-                        className=" bg-transparent placeholder-white border-b-4 border-white w-full text-3xl text-white py-3 focus:outline-none"
+                        className=" bg-transparent form-input placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white py-3  focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-slate-300 focus:border-opacity-50"
                         type={input.type}
                         placeholder={input.placeholder}
                         aria-label={input.ariaLabel}
@@ -118,7 +118,7 @@ function SubFooter() {
 }
 function Contact() {
     return (
-        <section id="Contact" className="w-full h-full bg-[#1abc9c] ">
+        <section id="contact" className="w-full h-full bg-[#1abc9c] ">
             <div className="container w-full mx-auto">
                 <SectionHeader
                     title={"Contact"}

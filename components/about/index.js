@@ -1,7 +1,7 @@
 import SectionHeader from "../sectionHeader"
 
 const aboutData = [
-    "Hi, i am Leo, a multi-lingual, Full Stack Developer with a background in Music Rights & Royalties Managment. Forever student, who feel in love with learning about new technologies and industry's best practices. Aspiring to build advanced web applications that will impact the world in a positive way.",
+    "My name is Leo, and I am a multilingual Full Stack Developer with a background in Music Rights & Royalties Management. As a lifelong learner, I am deeply passionate about discovering new technologies and industry best practices. My aspiration is to design advanced web applications that provide users with a seamless and engaging experience.",
 ]
 
 function TextContainer() {

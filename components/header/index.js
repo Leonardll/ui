@@ -25,7 +25,10 @@ const mastheadData = [
 
 function MastHead() {
     return (
-        <header className="flex flex-col items-center w-full pt-[calc(2rem+50px)] md:pt-[calc(2rem+74px)] pb-[6rem] bg-[#1abc9c]">
+        <header
+            className="flex flex-col items-center w-full pt-[calc(2rem+50px)] md:pt-[calc(2rem+74px)] pb-[6rem] bg-[#1abc9c]"
+            id="home"
+        >
             <div className="container flex flex-col items-center w-full">
                 <Avatar />
                 <h1 className=" text-6xl md:text-7xl text-white text-center ">

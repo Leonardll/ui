@@ -3,28 +3,29 @@ import Image from "next/image"
 import { useState } from "react"
 import { GrPrevious, GrNext } from "react-icons/gr"
 import { FaLink, FaGithub } from "react-icons/fa"
+import Link from "next/link"
 const cardData = [
-    {
-        imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fcryptotracker.jpeg?alt=media&token=39dc4214-1a47-4560-8edb-43cbd6e99977",
-        title: "Crypto Tracker",
-        description:
-            "My React Crypto Tracker, Introducing my first server side rendering app designed with Next.js and deployed on Firebase. First time are always a chalange but today i am proud to display it on my portfolio. The data are fetch from CoinGecko rest API, it was designed using functional component rather than class, useState and useEffect hooks.",
-        link: "https://myreactcryptotracker.web.app/",
-        github: "https://github.com/Leonardll/crypto-react",
-    },
+    // {
+    //     imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fcryptotracker.jpeg?alt=media&token=39dc4214-1a47-4560-8edb-43cbd6e99977",
+    //     title: "Crypto Tracker",
+    //     description:
+    //         "My React Crypto Tracker, Introducing my first server side rendering app designed with Next.js and deployed on Firebase. First time are always a chalange but today i am proud to display it on my portfolio. The data are fetch from CoinGecko rest API, it was designed using functional component rather than class, useState and useEffect hooks.",
+    //     link: "https://myreactcryptotracker.web.app/",
+    //     github: "https://github.com/Leonardll/crypto-react",
+    // },
     {
         imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2F1_RN_5KZaVN0xkUXKW4pnTFg.webp?alt=media&token=4ebb933b-888c-4659-891a-d98ba78ef65c",
         title: "Polypus",
         description:
-            "Polypus is a decentralized application that allows users to borrow assets against the value of their own NFTs or to lend assets. The stack used is HTML, Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project received two awards for best Polygon and Arbitrum application as well as Compound Labs Pool Prize.",
-        link: "morning-king-0051.on.fleek.co",
+            "Polypus is a decentralized application that enables users to borrow assets using the value of their NFTs as collateral, or to lend assets. The technology stack used for this project includes HTML, Tailwind CSS, Next JS, and Fleek. The smart contract is written in Solidity and deployed on the Polygon and Arbitrum networks. I was responsible for the front-end development and integration of the smart contract. The project has received recognition and awarded as the best application on Polygon and Arbitrum, as well as the Compound Labs Pool Prize.",
+        link: "https://morning-king-0051.on.fleek.co/",
         github: "https://github.com/npasquie/best-nft-as-collateral",
     },
     {
         imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2FchainlinkHackathon.png?alt=media&token=09bc96a0-2daa-40f1-853f-331a12977113",
         title: "The Raffle House",
         description:
-            "The Raffle House is a decentralized application that allows users to create raffles and sell tickets to them. The stack used is HTML,  Tailwind CSS, Next JS, Fleek. The smart contract is written in Solidity and deployed on Polygon and Arbitrum Network. I was in charge of the front-end development and the smart contract integration. The project is still in development but I am proud to be finalist and win the prizes for the best Polygon and Arbitrum project.",
+            "The Raffle House is a decentralized application that enables users to participate in fair raffles for an opportunity to win a variety of prizes, including fancy sneakers, artifacts, cars, motorbikes, and real estate derivatives. As project manager, I was in charge of overseeing the full-stack development during the Chainlink Hackathon in 2022. The technology stack used includes HTML, Tailwind CSS, Next JS, and Fleek. The smart contract, written in Solidity, is currently being tested on the testnet while the project is still in development. We are actively seeking ways to tokenize real-world assets and production chains in order to reduce the trust factor and enhance transparency in the raffle process. Development is ongoing.",
         link: "https://wild-dream-9169.on.fleek.co/",
         github: "https://github.com/LEO-TEAM-CHAINLINK-HACKATHON/NFTLOTTERY1",
     },
@@ -32,7 +33,7 @@ const cardData = [
         imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fhands.jpg?alt=media&token=43dbebfe-5b91-42e2-bacd-85987a5fe76b",
         title: "Unico Hogar",
         description:
-            "First freelance assignment for a Barcelona-based Real Estate Concierge service. The stack used is HTML, CSS, Bootstrap, Framer-Motion, SCSS, Next JS, Vercel.",
+            "My first freelance assignment was for a Barcelona-based Real Estate Concierge service. I utilized the following technology stack: HTML, CSS, Bootstrap, Framer-Motion, SCSS, and Next JS. The website was deployed on Vercel",
         link: "https://www.unicohogar.com/",
         github: "https://github.com/Leonardll/unicoHogar",
     },
@@ -40,7 +41,7 @@ const cardData = [
         imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fcity-scoot-banner.jpg?alt=media&token=7e3bab11-c46f-4815-8be9-fa57abbf94bf",
         title: "City Scoot",
         description:
-            "City Scoot is my first child. This is my first public website. This app was part of the final assignment that granted me my Computer Science Foundation Degree. HTML, CSS, Bootstrap, SCSS, Javascript, and Firebase make up the stack.",
+            "City Scoot is my first web development project that I am proud of. It was my first public website and also it was my final assignment for my Computer Science Foundation Degree. The technology stack that I used includes HTML, CSS, Bootstrap, SCSS, Javascript, and Firebase.",
         link: "https://cityscoot-d6c37.web.app/",
         github: "https://github.com/Leonardll/City-Scoot",
     },
@@ -74,30 +75,74 @@ function IconGradient({ children }) {
         </div>
     )
 }
-function CardItem({ imgSrc, title, description }) {
+
+function CardImage({ imgSrc }) {
+    return (
+        <div
+            className="w-full h-full rounded-t-lg"
+            style={{
+                backgroundImage: `url(${imgSrc})`,
+                backgroundPosition: "center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                width: "100%",
+                height: "300px",
+            }}
+        ></div>
+    )
+}
+
+function CardBody({ title, description, isClamped, setIsClamped }) {
+    return (
+        <>
+            <h2 className="p-3 text-xl text-center">{title}</h2>
+            <div className="p-5">
+                <p
+                    className={
+                        isClamped
+                            ? "text-justify text-lg w-full line-clamp-5"
+                            : "text-justify text-lg w-full line-clamp-none"
+                    }
+                >
+                    {description}
+                </p>
+
+                <button
+                    onClick={() => {
+                        setIsClamped(!isClamped)
+                    }}
+                    className="rounded p-2 mt-4 font-semi-bold  bg-[#1abc9c] text-white"
+                >
+                    Read More
+                </button>
+            </div>
+        </>
+    )
+}
+function CardFooter({ id, link, github }) {
+    return (
+        <div className="flex justify-center items-center">
+            {iconsData.map((item, index) => (
+                <Link key={index} href={item.id !== 2 ? link : github}>
+                    <IconGradient children={item.icon} />
+                </Link>
+            ))}
+        </div>
+    )
+}
+function CardItem({ imgSrc, title, description, id, link, github, isClamped, setIsClamped }) {
     return (
         <CardGradient>
             <div className="flex flex-col auto-rows-min text-white	 bg-[#1a252f] justify-center items-center w-full rounded-xl">
-                <div
-                    className="w-full h-full rounded-t-lg"
-                    style={{
-                        backgroundImage: `url(${imgSrc})`,
-                        backgroundPosition: "center",
-                        backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                        width: "100%",
-                        height: "300px",
-                    }}
-                ></div>
+                <CardImage imgSrc={imgSrc} />
 
-                <h2 className="p-3 text-xl text-center">{title}</h2>
-
-                <p className="text-justify text-lg w-full p-5">{description}</p>
-                <div className="flex justify-center items-center">
-                    {iconsData.map((item) => (
-                        <IconGradient key={item.id} children={item.icon} />
-                    ))}
-                </div>
+                <CardBody
+                    title={title}
+                    description={description}
+                    isClamped={isClamped}
+                    setIsClamped={setIsClamped}
+                />
+                <CardFooter id={id} link={link} github={github} />
             </div>
         </CardGradient>
     )
@@ -137,7 +182,7 @@ function NextButton({ clickHandler }) {
     )
 }
 
-function Slide({ cardData, currentCardIndex }) {
+function Slide({ cardData, currentCardIndex, isClamped, setIsClamped }) {
     return (
         <ul className="m-0 p-0 list-none">
             {cardData.map((item, index) => {
@@ -150,7 +195,11 @@ function Slide({ cardData, currentCardIndex }) {
                             imgSrc={item.imgSrc}
                             title={item.title}
                             description={item.description}
-                            link={"https://myreactcryptotracker.web.app/"}
+                            link={item.link}
+                            github={item.github}
+                            id={item.title}
+                            isClamped={isClamped}
+                            setIsClamped={setIsClamped}
                         />
                     </li>
                 ) : null
@@ -159,24 +208,47 @@ function Slide({ cardData, currentCardIndex }) {
     )
 }
 
-function Carousel({ cardData, currentCardIndex, prevSlideHandler, nextSlideHandler }) {
+function Carousel({
+    cardData,
+    currentCardIndex,
+    prevSlideHandler,
+    nextSlideHandler,
+    isClamped,
+    setIsClamped,
+}) {
     return (
         <div className="container carousel w-full  my-10 mx-auto">
-            <PreviousButton clickHandler={prevSlideHandler} />
+            <PreviousButton
+                clickHandler={prevSlideHandler}
+                isClamped={isClamped}
+                setIsClamped={setIsClamped}
+            />
             {/* track container*/}
-            <Slide cardData={cardData} currentCardIndex={currentCardIndex} />
+            <Slide
+                cardData={cardData}
+                currentCardIndex={currentCardIndex}
+                isClamped={isClamped}
+                setIsClamped={setIsClamped}
+            />
             {/* </div> */}
-            <NextButton clickHandler={nextSlideHandler} />
+            <NextButton
+                clickHandler={nextSlideHandler}
+                isClamped={isClamped}
+                setIsClamped={setIsClamped}
+            />
         </div>
     )
 }
 
 function Portfolio() {
     const [currentCardIndex, setCurrentCardIndex] = useState(0)
+    const [isClamped, setIsClamped] = useState(true)
     const prevSlideHandler = () => {
         if (currentCardIndex !== 0) {
+            setIsClamped(true)
             setCurrentCardIndex(currentCardIndex - 1)
         } else if (currentCardIndex === 0) {
+            setIsClamped(true)
             setCurrentCardIndex(cardData.length - 1)
         }
     }
@@ -184,8 +256,10 @@ function Portfolio() {
         console.log("clicked")
 
         if (currentCardIndex !== cardData.length - 1) {
+            setIsClamped(true)
             setCurrentCardIndex(currentCardIndex + 1)
         } else if (currentCardIndex === cardData.length - 1) {
+            setIsClamped(true)
             setCurrentCardIndex(0)
         }
     }
@@ -205,6 +279,8 @@ function Portfolio() {
 
                 {/* carousel container */}
                 <Carousel
+                    isClamped={isClamped}
+                    setIsClamped={setIsClamped}
                     cardData={cardData}
                     currentCardIndex={currentCardIndex}
                     prevSlideHandler={prevSlideHandler}

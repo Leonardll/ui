@@ -21,8 +21,8 @@ function CardItem({ cardUrl, cardTitle }) {
 const StackSection = (data, loader) => {
     console.log(data)
     return (
-        <section id="stack">
-            <div className="container  my-4 mx-auto">
+        <section className="mb-8" id="stack">
+            <div className="container  my-8 mx-auto">
                 <div className="text-center text-[#2c3e50] text-5xl mt-3">
                     <h1>Stack</h1>
                 </div>

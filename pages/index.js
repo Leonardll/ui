@@ -9,6 +9,7 @@ import Contact from "../components/contact"
 // import clientPromise from "../lib/mongodb"
 import myImageLoader from "../loader"
 import useSWR from "swr"
+import { use } from "react"
 
 const fetcher = async (url) => fetch(url).then((res) => res.json())
 export default function Home() {
