@@ -100,7 +100,7 @@ function CardBody({ title, description, isClamped, setIsClamped }) {
                 <p
                     className={
                         isClamped
-                            ? "text-justify text-lg w-full line-clamp-5"
+                            ? "text-justify text-lg w-full line-clamp-5 my-5"
                             : "text-justify text-lg w-full line-clamp-none"
                     }
                 >
@@ -111,7 +111,7 @@ function CardBody({ title, description, isClamped, setIsClamped }) {
                     onClick={() => {
                         setIsClamped(!isClamped)
                     }}
-                    className="rounded p-2 mt-4 font-semi-bold  bg-[#1abc9c] text-white"
+                    className="rounded p-3 font-semi-bold m-2 bg-[#1abc9c] text-white"
                 >
                     Read More
                 </button>
@@ -154,9 +154,16 @@ function PreviousButton({ clickHandler }) {
             onClick={() => {
                 clickHandler()
             }}
-            style={{ zIndex: 2, backgroundColor: "white", opacity: 0.5 }}
+            style={{
+                backgroundColor: "white",
+                opacity: 0.5,
+                borderRadius: "50%",
+                margin: "0 auto",
+                padding: "0.5em",
+                fontSize: "1em",
+            }}
             type="button"
-            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh]  absolute carousel-control-prev left-[1em] top-[45%] md:top-[50%] flex items-center justify-center"
+            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh]  absolute carousel-control-prev left-[calc(10%+1.5em)] top-[calc(45%-20px)] md:top-[50%] flex items-center justify-center"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
             cursor={"pointer"}
@@ -168,21 +175,26 @@ function PreviousButton({ clickHandler }) {
 
 function NextButton({ clickHandler }) {
     return (
-        <div className="bg-white">
-            <GrNext
-                style={{ zIndex: 2, backgroundColor: "white", opacity: 0.5 }}
-                onClick={() => {
-                    clickHandler()
-                }}
-                type="button"
-                className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[1em] top-[45%] md:top-[50%] "
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-                cursor={"pointer"}
-            >
-                Next
-            </GrNext>
-        </div>
+        <GrNext
+            style={{
+                backgroundColor: "white",
+                opacity: 0.5,
+                borderRadius: "50%",
+                margin: "0 auto",
+                padding: "0.5em",
+                fontSize: "1em",
+            }}
+            onClick={() => {
+                clickHandler()
+            }}
+            type="button"
+            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[calc(10%+1.5em)] top-[calc(45%-20px)] md:top-[50%] "
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+            cursor={"pointer"}
+        >
+            Next
+        </GrNext>
     )
 }
 
