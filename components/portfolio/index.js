@@ -163,7 +163,7 @@ function PreviousButton({ clickHandler }) {
                 fontSize: "1em",
             }}
             type="button"
-            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh]  absolute carousel-control-prev left-[calc(10%+1.5em)] top-[calc(45%-20px)] md:top-[50%] flex items-center justify-center"
+            className=" active h-[3em] w-[3em] z-[2] translate-y-[10vh]  absolute carousel-control-prev left-[calc(1vw+.5em)] top-[calc(30vh+1.5em)] md:top-[50%] flex items-center justify-center"
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="prev"
             cursor={"pointer"}
@@ -188,7 +188,7 @@ function NextButton({ clickHandler }) {
                 clickHandler()
             }}
             type="button"
-            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[calc(10%+1.5em)] top-[calc(45%-20px)] md:top-[50%] "
+            className=" active h-[3em] w-[3em] carousel-control-next opacity-[0.5]  absolute  z-[2] translate-y-[10vh] flex items-center justify-center right-[calc(1vw+.5em)] top-[calc(30vh+1.5em)] md:top-[50%] "
             data-bs-target="#carouselExampleCaptions"
             data-bs-slide="next"
             cursor={"pointer"}
