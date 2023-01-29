@@ -281,7 +281,7 @@ function Portfolio() {
     }
 
     return (
-        <section id="portfolio" className="w-full  bg-white p-5">
+        <section id="portfolio" className="w-full scroll-mt-20 bg-white p-5">
             <div className="container relative w-full mx-auto">
                 <div className="container my-4 mx-auto">
                     <SectionHeader

@@ -19,7 +19,7 @@ function About() {
     return (
         <section
             id="about"
-            className="grid grid-cols-1 w-full place-items-center bg-[#1abc9c] p-5"
+            className="grid grid-cols-1 w-full place-items-center bg-[#1abc9c] p-5 scroll-mt-20"
         >
             <div className="container p-5">
                 <SectionHeader

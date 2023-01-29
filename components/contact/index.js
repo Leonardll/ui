@@ -195,7 +195,7 @@ function SubFooter() {
 }
 function Contact() {
     return (
-        <section id="contact" className="w-full h-full bg-[#1abc9c] ">
+        <section id="contact" className="w-full scroll-mt-20 h-full bg-[#1abc9c] ">
             <div className="container w-full mx-auto">
                 <SectionHeader
                     title={"Contact"}

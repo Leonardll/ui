@@ -31,7 +31,7 @@ function MastHead() {
         >
             <div className="container flex flex-col items-center w-full">
                 <Avatar />
-                <h1 className=" text-6xl md:text-7xl text-white text-center ">
+                <h1 className=" text-5xl md:text-6xl text-white text-center ">
                     {mastheadData[0].name}
                 </h1>
                 <Divider
