@@ -3,6 +3,7 @@ import { FaLinkedinIn, FaGithub } from "react-icons/fa"
 import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
 import { ErrorMessage, Formik, useFormik } from "formik"
 import * as yup from "yup"
+import Link from "next/link"
 
 const inputData = [
     {
@@ -49,15 +50,24 @@ const subFooterData = [
             "'Knowledge economy is the only asset in which purchasing power only depends on your attention and time. Idriss Aberkane'",
     },
 ]
-const regEx = new RegExp(/^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$/)
+const footerLinks = [
+    {
+        id: "linkedin",
+        title: "LinkedIn",
+        link: "https://www.linkedin.com/in/abdulazeez-olawale-oluwasegun-0b1b3b1b3/",
+    },
+    {
+        id: "github",
+        title: "Github",
+        link: "https://github.com/Leonardll",
+    },
+]
+
+const pattern = /^([+]?\d{1,2}[-\s]?|)\d{3}[-\s]?\d{3}[-\s]?\d{4}$/
 const schema = yup.object().shape({
     Name: yup.string().min(3, "too short").max(15, "too long").required(" Name Required"),
     Email: yup.string().email("Invalid email").required(" Email Required"),
-    Phone: yup
-        .string()
-        .matches(regEx, "Phone number is not valid")
-        .min(11, "Phone must be 11 digits min")
-        .required("Phone Required"),
+    Phone: yup.string().matches(pattern, "Phone number is not valid").required("Phone Required"),
     Message: yup.string().required(),
 })
 function FormItems({ formik }) {
@@ -176,9 +186,12 @@ function SubFooter() {
                     <div className="col-span-1 p-2 md:p-5 " key={data.id}>
                         <h1 className="text-white text-3xl font-semibold">{data.title}</h1>
                         <div className="flex flex-col md:flex-row  justify-around 2xl:justify-center items-center m-5">
-                            <FaLinkedinIn className="text-white text-3xl rounded-2xl outline outline-4 m-2 h-full py-2 px-3 w-auto" />
-
-                            <FaGithub className="text-white text-3xl  rounded-2xl outline outline-4 py-2 m-2 px-3 h-full w-auto" />
+                            <Link href={footerLinks[0].link}>
+                                <FaLinkedinIn className="text-white text-3xl rounded-2xl outline outline-4 m-2 h-full py-2 px-3 w-auto" />
+                            </Link>
+                            <Link href={footerLinks[1].link}>
+                                <FaGithub className="text-white text-3xl  rounded-2xl outline outline-4 py-2 m-2 px-3 h-full w-auto" />
+                            </Link>
                         </div>
                     </div>
                 ) : (
