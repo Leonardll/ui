@@ -49,10 +49,15 @@ const subFooterData = [
             "'Knowledge economy is the only asset in which purchasing power only depends on your attention and time. Idriss Aberkane'",
     },
 ]
+const regEx = new RegExp(/^(\+|00)[1-9][0-9 \-\(\)\.]{7,32}$/)
 const schema = yup.object().shape({
     Name: yup.string().min(3, "too short").max(15, "too long").required(" Name Required"),
     Email: yup.string().email("Invalid email").required(" Email Required"),
-    Phone: yup.number().min(11, "Phone must be 11 digits min").required("Phone Required"),
+    Phone: yup
+        .string()
+        .matches(regEx, "Phone number is not valid")
+        .min(11, "Phone must be 11 digits min")
+        .required("Phone Required"),
     Message: yup.string().required(),
 })
 function FormItems({ formik }) {
@@ -84,7 +89,7 @@ function FormItems({ formik }) {
                 ) : (
                     <div key={input.id}>
                         <input
-                            onChange={formik.handleChange}
+                            onChange={formik.handleChange(input.placeholder)}
                             name={input.placeholder}
                             className=" bg-transparent form-input placeholder-white border-b-4 border-t-0 border-r-0 border-l-0 border-white w-full text-3xl text-white py-3  focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-slate-300 focus:border-opacity-50"
                             type={input.type}
@@ -128,18 +133,6 @@ function FormContainer() {
         },
         validationSchema: schema,
         validateOnChange: true,
-        mapPropsToValues: () => values,
-
-        // Custom sync validation
-        // validate: async (values) => {
-        //     const errors = {}
-
-        //     if (!values.Name) {
-        //         errors.Name = "Required"
-        //     }
-
-        //     return errors
-        // },
         onSubmit: async (values, actions) => {
             if (schema.validate(values, { abortEarly: true })) {
                 const res = await fetch("/api/contact", {
