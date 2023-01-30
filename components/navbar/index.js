@@ -69,7 +69,7 @@ function NavLinks({ open, setOpen }) {
                         href={item.url}
                         passHref
                         key={item.id}
-                        className="px-4 font-bold py-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 "
+                        className="px-4 font-bold py-2"
                     >
                         {item.title}
                     </Link>

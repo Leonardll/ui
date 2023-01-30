@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { useEffect } from "react"
 import Divider from "../divider"
 
 function CardItem({ cardUrl, cardTitle }) {
@@ -19,7 +20,6 @@ function CardItem({ cardUrl, cardTitle }) {
     )
 }
 const StackSection = (data, loader) => {
-    console.log(data)
     return (
         <section className="mb-8 scroll-mt-20" id="stack">
             <div className="container  my-8 mx-auto">
