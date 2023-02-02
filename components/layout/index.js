@@ -5,8 +5,6 @@ import Footer from "../footer"
 import myImageLoader from "../../loader"
 import { forwardRef } from "react"
 const Layout = forwardRef(({ children, active }, ref) => {
-    //const { active } = props
-    console.log(active)
     return (
         <div className="flex flex-1 min-h-screen  flex-col items-center justify-center">
             <Head>

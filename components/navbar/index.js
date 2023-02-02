@@ -100,9 +100,13 @@ function DropDown({ open, setOpen, active }) {
 
 const Logo = () => {
     return (
-        <a className="text-3xl font-bold no-underline py-3 mx-5 flex-nowrap inline-block">
+        <Link
+            href="/#home"
+            passHref
+            className="text-3xl font-bold no-underline py-3 mx-5 flex-nowrap inline-block"
+        >
             Full Stack Developer
-        </a>
+        </Link>
     )
 }
 function NavMenu({ active }) {

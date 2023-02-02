@@ -43,7 +43,6 @@ export default function Home() {
         if (activeSection && activeSection !== prevActiveSection) {
             const targetElement = refs[activeSection].current
             targetElement.scrollIntoView({ behavior: "smooth" })
-            //window.location.hash = `#${activeSection}`
             window.history.pushState(null, null, `#${activeSection}`)
         }
         setPrevActiveSection(activeSection)
