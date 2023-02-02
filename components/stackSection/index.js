@@ -4,17 +4,16 @@ import Divider from "../divider"
 
 function CardItem({ cardUrl, cardTitle }) {
     return (
-        <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl p-5 mx-auto overflow-hidde ">
+        <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl  mx-auto overflow-hidde ">
             <Image
                 src={cardUrl}
                 height={150}
                 width={200}
                 alt={cardTitle}
-                //object-fit="cover"
-                className="w-full h-full mt-3   object-scale-down object-center"
+                className="w-full h-full p-5 mt-3 object-scale-down object-center"
             />
-            <div className="text-center m-3">
-                <h3 className="font-bold p-3">{cardTitle}</h3>
+            <div className="text-center my-4 border-t shadow-t-sm w-full">
+                <h3 className="font-bold p-5">{cardTitle}</h3>
             </div>
         </div>
     )
