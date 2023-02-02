@@ -4,6 +4,7 @@ import { AiFillLinkedin, AiFillGithub } from "react-icons/ai"
 import { ErrorMessage, Formik, useFormik } from "formik"
 import * as yup from "yup"
 import Link from "next/link"
+import { forwardRef } from "react"
 
 const inputData = [
     {
@@ -206,9 +207,9 @@ function SubFooter() {
         </div>
     )
 }
-function Contact() {
+const Contact = forwardRef((props, ref) => {
     return (
-        <section id="contact" className="w-full scroll-mt-20 h-full bg-[#1abc9c] ">
+        <section ref={ref} id="contact" className="w-full scroll-mt-20 h-full bg-[#1abc9c] ">
             <div className="container w-full mx-auto">
                 <SectionHeader
                     title={"Contact"}
@@ -222,6 +223,6 @@ function Contact() {
             <SubFooter />
         </section>
     )
-}
+})
 
 export default Contact

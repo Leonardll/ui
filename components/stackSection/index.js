@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useEffect } from "react"
+import { forwardRef, useEffect } from "react"
 import Divider from "../divider"
 
 function CardItem({ cardUrl, cardTitle }) {
@@ -19,9 +19,9 @@ function CardItem({ cardUrl, cardTitle }) {
         </div>
     )
 }
-const StackSection = (data, loader) => {
+const StackSection = forwardRef(({ data, loader }, ref) => {
     return (
-        <section className="mb-8 scroll-mt-20" id="stack">
+        <section ref={ref} className="mb-8 scroll-mt-24" id="stack">
             <div className="container  my-8 mx-auto">
                 <div className="text-center text-[#2c3e50] text-5xl mt-3">
                     <h1>Stack</h1>
@@ -33,7 +33,7 @@ const StackSection = (data, loader) => {
                 />
 
                 <div className="grid grid-cols-2 auto-rows-fr md:grid-cols-4 gap-2 md:gap-4 place-items-stretch place-content-center m-5">
-                    {data.data.map((card) => (
+                    {data.map((card) => (
                         <CardItem
                             key={card._id}
                             cardUrl={card.url}
@@ -45,6 +45,5 @@ const StackSection = (data, loader) => {
             </div>
         </section>
     )
-}
-
+})
 export default StackSection

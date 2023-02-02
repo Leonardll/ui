@@ -1,3 +1,4 @@
+import { forwardRef } from "react"
 import SectionHeader from "../sectionHeader"
 
 const aboutData = [
@@ -15,9 +16,10 @@ function TextContainer() {
         </div>
     )
 }
-function About() {
+const About = forwardRef((props, ref) => {
     return (
         <section
+            ref={ref}
             id="about"
             className="grid grid-cols-1 w-full place-items-center bg-[#1abc9c] p-5 scroll-mt-20"
         >
@@ -33,6 +35,6 @@ function About() {
             </div>
         </section>
     )
-}
+})
 
 export default About

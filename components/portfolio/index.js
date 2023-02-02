@@ -1,6 +1,6 @@
 import SectionHeader from "../sectionHeader"
 import Image from "next/image"
-import { useState } from "react"
+import { useState, forwardRef } from "react"
 import { GrPrevious, GrNext } from "react-icons/gr"
 import { FaLink, FaGithub } from "react-icons/fa"
 import Link from "next/link"
@@ -256,7 +256,7 @@ function Carousel({
     )
 }
 
-function Portfolio() {
+const Portfolio = forwardRef((props, ref) => {
     const [currentCardIndex, setCurrentCardIndex] = useState(0)
     const [isClamped, setIsClamped] = useState(true)
     const prevSlideHandler = () => {
@@ -281,7 +281,7 @@ function Portfolio() {
     }
 
     return (
-        <section id="portfolio" className="w-full scroll-mt-20 bg-white p-5">
+        <section ref={ref} id="portfolio" className="w-full scroll-mt-20 bg-white p-5">
             <div className="container relative w-full mx-auto">
                 <div className="container my-4 mx-auto">
                     <SectionHeader
@@ -305,6 +305,6 @@ function Portfolio() {
             </div>
         </section>
     )
-}
+})
 
 export default Portfolio

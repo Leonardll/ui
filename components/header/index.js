@@ -1,4 +1,5 @@
 import Image from "next/image"
+import { forwardRef } from "react"
 import Divider from "../divider"
 
 function Avatar() {
@@ -23,9 +24,10 @@ const mastheadData = [
     },
 ]
 
-function MastHead() {
+const MastHead = forwardRef((props, ref) => {
     return (
         <header
+            ref={ref}
             className="flex flex-col items-center w-full pt-[calc(2rem+50px)] md:pt-[calc(2rem+74px)] pb-[6rem] bg-[#1abc9c]"
             id="home"
         >
@@ -45,6 +47,6 @@ function MastHead() {
             </div>
         </header>
     )
-}
+})
 
 export default MastHead

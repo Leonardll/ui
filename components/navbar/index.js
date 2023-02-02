@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import { GiHamburgerMenu } from "react-icons/gi"
 
 const navbarData = [
@@ -20,7 +20,7 @@ const navbarData = [
         url: "/#about",
     },
     {
-        id: "portofolio",
+        id: "portfolio",
         title: "Portfolio",
         url: "/#portfolio",
     },
@@ -51,7 +51,38 @@ function NavToggler({ open, setOpen }) {
     )
 }
 
-function NavLinks({ open, setOpen }) {
+function NavLinks({ setOpen, isActive, setIsActive }) {
+    return (
+        <ul className="flex flex-col md:flex-row items-center justify-between w-full dropdowm-menu">
+            {navbarData.map((item) => (
+                <Link
+                    onClick={() => {
+                        setOpen(false)
+                        setIsActive(item.id)
+                    }}
+                    href={item.url}
+                    passHref
+                    key={item.id}
+                    className={`px-4 font-bold py-4 ${
+                        item.id === isActive
+                            ? "text-gray-500 border-b-4 border-b-white transition ease-in-out duration-700  "
+                            : "text-white  hover:text-gray-500 hover:transition hover:ease-in-out hover:duration-700"
+                    }`}
+                >
+                    {item.title}
+                </Link>
+            ))}
+        </ul>
+    )
+}
+
+function DropDown({ open, setOpen, active }) {
+    const [isActive, setIsActive] = useState("home")
+    useEffect(() => {
+        const newActive = setIsActive(window.location.hash.replace("#", "")) || active
+        setIsActive(newActive)
+    }, [active])
+
     return (
         <div
             className={
@@ -61,19 +92,7 @@ function NavLinks({ open, setOpen }) {
             }
         >
             <ul className="flex flex-col md:flex-row items-center justify-between w-full dropdowm-menu">
-                {navbarData.map((item) => (
-                    <Link
-                        onClick={() => {
-                            setOpen(false)
-                        }}
-                        href={item.url}
-                        passHref
-                        key={item.id}
-                        className="px-4 font-bold py-2"
-                    >
-                        {item.title}
-                    </Link>
-                ))}
+                <NavLinks setOpen={setOpen} setIsActive={setIsActive} isActive={isActive} />
             </ul>
         </div>
     )
@@ -86,20 +105,20 @@ const Logo = () => {
         </a>
     )
 }
-function NavMenu({ open, setOpen }) {
+function NavMenu({ active }) {
+    const [open, setOpen] = useState(false)
     return (
         <nav className="w-full fixed bg-[#2c3e50] z-10 top-0  ">
             <div className="container  mx-auto lg:m-auto flex flex-wrap items-center justify-between  max-w-4xl  text-white text-lg py-4">
                 <Logo />
                 <NavToggler open={open} setOpen={setOpen} />
-                <NavLinks open={open} setOpen={setOpen} />
+                <DropDown open={open} setOpen={setOpen} active={active} />
             </div>
         </nav>
     )
 }
-function NavBar() {
-    const [open, setOpen] = useState(false)
-    return <NavMenu open={open} setOpen={setOpen} />
+function NavBar({ active }) {
+    return <NavMenu active={active} />
 }
 
 export default NavBar
