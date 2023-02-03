@@ -157,7 +157,6 @@ function NextButton({ clickHandler }) {
 }
 
 function Slide({ cardData, currentCardIndex, isClamped, setIsClamped }) {
-    console.log(cardData)
     return (
         <ul className="m-0 p-0 list-none">
             {cardData.map((item, index) => {
