@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
                 <meta
                     name="image"
                     property="og:image"
-                    content="https://www.leonardlator.dev/avatar.svg?w=640&q=75"
+                    content="https://www.leonardlator.dev/api/og"
                 />
                 <meta name="author" content="Leonard Lator" />
                 <link rel="icon" href="/favicon.ico" />
