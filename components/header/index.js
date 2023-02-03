@@ -5,7 +5,7 @@ import Divider from "../divider"
 function Avatar() {
     return (
         <Image
-            src="/avatar.svg"
+            src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
             alt="avatar"
             width={450}
             height={450}
