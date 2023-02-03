@@ -14,8 +14,8 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta property="og:title" name="title" content="Full Stack Developer" />
                 <meta
-                    property="og:image"
                     name="image"
+                    property="og:image"
                     content="https://www.leonardlator.dev/avatar.svg?w=640&q=75"
                 />
                 <meta name="author" content="Leonard Lator" />
