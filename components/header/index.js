@@ -11,6 +11,7 @@ function Avatar() {
             height={450}
             responvive="true"
             className="rounded-full mb-5 w-60"
+            priority="true"
         />
     )
 }
