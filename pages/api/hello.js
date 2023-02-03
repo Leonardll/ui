@@ -6,9 +6,11 @@ export default async function handler(req, res) {
         const db = client.db("my_Database")
 
         const collection = await db.collection("test")
+        const collection2 = await db.collection("portfolio")
         const data = await collection.find({}).limit(20).toArray()
-        //console.log(data)
-        return res.status(200).json(data)
+        const data2 = await collection2.find({}).limit(20).toArray()
+
+        return res.status(200).json({ data, data2 })
     } catch (e) {
         res.status(500).json({ message: e.message })
     }
