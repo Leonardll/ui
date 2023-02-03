@@ -33,7 +33,7 @@ const cardData = [
         imgSrc: "https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Fhands.jpg?alt=media&token=43dbebfe-5b91-42e2-bacd-85987a5fe76b",
         title: "Unico Hogar",
         description:
-            "My first freelance assignment was for a Barcelona-based Real Estate Concierge service. I utilized the following technology stack: HTML, CSS, Bootstrap, Framer-Motion, SCSS, and Next JS. The website was deployed on Vercel",
+            "My first freelance assignment was for a Barcelona-based Real Estate Concierge service. I used the following technology stack: HTML, CSS, Bootstrap, Framer-Motion, SCSS, and Next JS. The website was deployed on Vercel",
         link: "https://www.unicohogar.com/",
         github: "https://github.com/Leonardll/unicoHogar",
     },
