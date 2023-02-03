@@ -157,6 +157,7 @@ function NextButton({ clickHandler }) {
 }
 
 function Slide({ cardData, currentCardIndex, isClamped, setIsClamped }) {
+    console.log(cardData)
     return (
         <ul className="m-0 p-0 list-none">
             {cardData.map((item, index) => {
@@ -224,16 +225,16 @@ const Portfolio = forwardRef((props, ref) => {
             setCurrentCardIndex(currentCardIndex - 1)
         } else if (currentCardIndex === 0) {
             setIsClamped(true)
-            setCurrentCardIndex(cardData.length - 1)
+            setCurrentCardIndex(data.length - 1)
         }
     }
     const nextSlideHandler = () => {
         console.log("clicked")
 
-        if (currentCardIndex !== cardData.length - 1) {
+        if (currentCardIndex !== data.length - 1) {
             setIsClamped(true)
             setCurrentCardIndex(currentCardIndex + 1)
-        } else if (currentCardIndex === cardData.length - 1) {
+        } else if (currentCardIndex === data.length - 1) {
             setIsClamped(true)
             setCurrentCardIndex(0)
         }
