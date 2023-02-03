@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
                 <meta
                     property="og:image"
                     name="image"
-                    content="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7?w=1080&q=75"
+                    content="https://www.leonardlator.dev/avatar.svg?w=640&q=75"
                 />
                 <meta name="author" content="Leonard Lator" />
                 <link rel="icon" href="/favicon.ico" />
