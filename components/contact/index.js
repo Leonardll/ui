@@ -128,7 +128,7 @@ function Formbutton({ formik }) {
         <button
             onClick={formik.handleSubmit}
             type="submit"
-            className="bg-white w-[5em] text-[#1abc9c] text-xl font-semibold rounded px-4 py-2 m-5"
+            className="bg-white w-[5em] text-[#1abc9c] text-xl font-semibold rounded px-4 py-2 m-5 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  hover:bg-opacity-30 hover:text-[white]"
         >
             Send{" "}
         </button>

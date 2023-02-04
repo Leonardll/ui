@@ -69,7 +69,7 @@ function CardBody({ title, description, isClamped, setIsClamped }) {
                     onClick={() => {
                         setIsClamped(!isClamped)
                     }}
-                    className="rounded p-3 font-semi-bold m-2 bg-[#1abc9c] text-white"
+                    className="rounded p-3 font-semi-bold m-2 bg-[#1abc9c] text-white transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:text-[#1abc9c] hover:bg-white"
                 >
                     Read More
                 </button>
@@ -81,7 +81,11 @@ function CardFooter({ id, link, github }) {
     return (
         <div className="flex justify-center items-center">
             {iconsData.map((item, index) => (
-                <Link key={index} href={item.id !== 2 ? link : github}>
+                <Link
+                    className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  hover:bg-opacity-30"
+                    key={index}
+                    href={item.id !== 2 ? link : github}
+                >
                     <IconGradient children={item.icon} />
                 </Link>
             ))}
