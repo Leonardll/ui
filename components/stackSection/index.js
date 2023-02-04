@@ -4,7 +4,7 @@ import Divider from "../divider"
 
 function CardItem({ cardUrl, cardTitle }) {
     return (
-        <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl  mx-auto overflow-hidde ">
+        <div className="bg-white flex flex-col justify-center rounded-lg shadow-xl  mx-auto overflow-hidden transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105  hover:bg-opacity-30 ">
             <Image
                 src={cardUrl}
                 height={150}

@@ -65,8 +65,8 @@ function NavLinks({ setOpen, isActive, setIsActive }) {
                     key={item.id}
                     className={`px-4 font-bold py-4 ${
                         item.id === isActive
-                            ? "text-gray-500 border-b-4 border-b-white transition ease-in-out duration-700  "
-                            : "text-white  hover:text-gray-500 hover:transition hover:ease-in-out hover:duration-700"
+                            ? "text-gray-500 border-b-4 border-b-white transition ease-in-out duration-700 transform hover:-translate-y-1 hover:scale-105 "
+                            : "text-white  hover:text-gray-500 hover:transition hover:ease-in-out hover:duration-700 transform hover:-translate-y-1 hover:scale-105"
                     }`}
                 >
                     {item.title}
