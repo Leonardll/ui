@@ -55,7 +55,7 @@ const footerLinks = [
     {
         id: "linkedin",
         title: "LinkedIn",
-        link: "https://www.linkedin.com/in/abdulazeez-olawale-oluwasegun-0b1b3b1b3/",
+        link: "https://www.linkedin.com/in/leonardlator/",
     },
     {
         id: "github",

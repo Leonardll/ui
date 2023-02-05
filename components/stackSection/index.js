@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { forwardRef, useEffect } from "react"
+import { forwardRef } from "react"
 import Divider from "../divider"
 
 function CardItem({ cardUrl, cardTitle }) {
@@ -13,6 +13,7 @@ function CardItem({ cardUrl, cardTitle }) {
                 placeholder="blur"
                 blurDataURL="https://picsum.photos/id/870/200/300?grayscale&blur=2"
                 className="w-full h-full p-5 mt-3 object-scale-down object-center"
+                priority={false}
             />
             <div className="text-center my-4 border-t shadow-t-sm w-full">
                 <h3 className="font-bold p-5">{cardTitle}</h3>

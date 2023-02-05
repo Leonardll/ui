@@ -1,5 +1,3 @@
-import Image from "next/image"
-
 function Footer() {
     return (
         <footer className="flex h-24 bg-[#1a252f] w-full items-center text-white justify-center">
