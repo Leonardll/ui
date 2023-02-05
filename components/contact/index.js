@@ -141,11 +141,13 @@ function FormContainer() {
             Email: "",
             Phone: "",
             Message: "",
+            created: "",
         },
         validationSchema: schema,
         validateOnChange: true,
         onSubmit: async (values, actions) => {
             if (schema.validate(values, { abortEarly: true })) {
+                values.created = new Date().toISOString()
                 const res = await fetch("/api/contact", {
                     method: "post",
                     headers: {
@@ -157,7 +159,7 @@ function FormContainer() {
                     }),
                 })
                     .then((res) => res.json())
-                    .then((data) => console.log(data))
+                    .then((data) => console.log(data, values))
                     .catch((err) => console.log(err))
                 actions.resetForm({ values: "" })
                 alert("Message sent! Thank you\nWe will be in touch with you soon!")

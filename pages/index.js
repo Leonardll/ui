@@ -23,7 +23,7 @@ export default function Home() {
     }
     useEffect(() => {
         const handleScroll = () => {
-            setPosition(window.scrollY + 100)
+            setPosition(window.scrollY + window.innerHeight / 2)
             for (let section in refs) {
                 if (
                     refs[section].current &&

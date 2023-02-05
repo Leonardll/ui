@@ -23,7 +23,8 @@ export default async (req, res) => {
   Email: ${body.data.Email}\r\n
   Phone:${body.data.Phone}
   Message: ${body.data.Message}\r\n
-  createdAt: ${new Date()}\r\n
+  createdAt: ${new Date(Date.now() * 1000).toString()}
+  
 `
 
     const data = {
@@ -32,7 +33,7 @@ export default async (req, res) => {
         subject: `New message from ${body.data.Name} ${body.data.Phone}`,
         text: message,
         html: message.replace(/\r\n/g, "<br />"),
-        createdAt: new Date(),
+        createdAt: body.data.created,
     }
 
     try {
@@ -41,7 +42,7 @@ export default async (req, res) => {
 
         const collection = db.collection("messages")
         await collection.insertOne(body.data)
-
+        console.log(data)
         await mail.send(data)
         res.status(200).json({ status: "OK" })
     } catch (error) {
