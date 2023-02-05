@@ -1,5 +1,5 @@
 import cookie from "cookie"
-
+import clientPromise from "../../lib/mongodb"
 const mail = require("@sendgrid/mail")
 
 mail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY)
@@ -31,9 +31,16 @@ export default async (req, res) => {
         subject: `New message from ${body.data.Name} ${body.data.Phone}`,
         text: message,
         html: message.replace(/\r\n/g, "<br />"),
+        createdAt: new Date(),
     }
 
     try {
+        const client = await clientPromise
+        const db = client.db(process.env.NEXT_PUBLIC_MONGODB_DB)
+
+        const collection = db.collection("messages")
+        await collection.insertOne(body.data)
+
         await mail.send(data)
         res.status(200).json({ status: "OK" })
     } catch (error) {

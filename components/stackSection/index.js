@@ -22,6 +22,7 @@ function CardItem({ cardUrl, cardTitle }) {
     )
 }
 const StackSection = forwardRef(({ data, loader }, ref) => {
+    console.log(data)
     return (
         <section ref={ref} className="mb-8 scroll-mt-24" id="stack">
             <div className="container  my-8 mx-auto">
