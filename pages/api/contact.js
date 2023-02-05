@@ -23,6 +23,7 @@ export default async (req, res) => {
   Email: ${body.data.Email}\r\n
   Phone:${body.data.Phone}
   Message: ${body.data.Message}\r\n
+  createdAt: ${new Date()}\r\n
 `
 
     const data = {
