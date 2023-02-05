@@ -42,7 +42,6 @@ export default async (req, res) => {
 
         const collection = db.collection("messages")
         await collection.insertOne(body.data)
-        console.log(data)
         await mail.send(data)
         res.status(200).json({ status: "OK" })
     } catch (error) {
