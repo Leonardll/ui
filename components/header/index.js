@@ -12,6 +12,8 @@ function Avatar() {
             responvive="true"
             className="rounded-full mb-5 w-60"
             priority="true"
+            placeholder="blur"
+            blurDataURL="https://picsum.photos/id/870/200/300?grayscale&blur=2"
         />
     )
 }

@@ -9,7 +9,7 @@ function TextContainer() {
     return (
         <div className="container grid grid-flow-row md:grid-cols-1 ">
             <div className=" justify-center items-center mx-auto w-full md:max-w-[60%]  p-5">
-                <p className=" text-white brake-words text-justify text-xl mx-auto max-w-auto tracking-tighter py-3">
+                <p className=" text-white  brake-words text-justify text-xl mx-auto max-w-auto tracking-tighter py-3">
                     {aboutData[0]}
                 </p>
             </div>
