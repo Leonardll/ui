@@ -39,7 +39,7 @@ function NavToggler({ open, setOpen }) {
                     console.log("clicked")
                     setOpen(!open)
                 }}
-                className="navbar-toggle "
+                className="navbar-toggle"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent1"
@@ -113,7 +113,7 @@ function NavMenu({ active }) {
     const [open, setOpen] = useState(false)
     return (
         <nav className="w-full fixed bg-[#2c3e50] z-10 top-0  ">
-            <div className="container  mx-auto lg:m-auto flex flex-wrap items-center justify-between  max-w-4xl  text-white text-lg py-4">
+            <div className="container mx-auto lg:m-auto flex flex-wrap items-center justify-center sm:justify-between  max-w-4xl  text-white text-lg py-4">
                 <Logo />
                 <NavToggler open={open} setOpen={setOpen} />
                 <DropDown open={open} setOpen={setOpen} active={active} />
