@@ -5,12 +5,13 @@ import Divider from "../divider"
 function Avatar() {
     return (
         <Image
-            src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
+            src="/images/avataaarswhitebg.svg"
+            //src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
             alt="avatar"
             width={450}
             height={450}
             responvive="true"
-            className="rounded-full mb-5 w-60"
+            className=" rounded-full mb-5 w-60"
             priority="true"
             placeholder="blur"
             blurDataURL="https://picsum.photos/id/870/200/300?grayscale&blur=2"

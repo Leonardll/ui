@@ -80,7 +80,7 @@ function CardBody({ title, description, isClamped, setIsClamped }) {
 function CardFooter({ id, link, github }) {
     return (
         <div className="flex justify-center items-center">
-            {iconsData.map((item, index) => (
+            {iconsData?.map((item, index) => (
                 <Link
                     className="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110  hover:bg-opacity-30"
                     key={index}
@@ -163,7 +163,7 @@ function NextButton({ clickHandler }) {
 function Slide({ cardData, currentCardIndex, isClamped, setIsClamped }) {
     return (
         <ul className="m-0 p-0 list-none">
-            {cardData.map((item, index) => {
+            {cardData?.map((item, index) => {
                 return currentCardIndex === index ? (
                     <li
                         key={item._id}

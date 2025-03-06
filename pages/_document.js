@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
+
 class MyDocument extends Document {
     static async getInitialProps(ctx) {
         const originalRenderPage = ctx.renderPage
@@ -22,7 +23,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en" className="transition ease-in-out duration-1000 scroll-smooth">
                 <Head />
-                <body>
+                <body className= "min-h-screen flex  items-center justify-between">                    
                     <Main />
                     <NextScript />
                 </body>
