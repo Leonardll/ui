@@ -1,7 +1,7 @@
 import React, { forwardRef, Ref, RefAttributes } from "react"
-import Footer from "../footer2"
+import Footer from "../footer"
 import { ThemeProvider } from "../themeProvider"
-import Header from "../header2"
+import Header from "../header"
 import AnimatedCursor from "../animations/animated-cursor"
 //import Hero from "@/components/hero"
 interface LayoutProps {

@@ -1,9 +1,8 @@
 import Hero from "@/components/hero";
-import StackSection from "../components/stackSection";
-import About from "../components/about2";
+import About from "../components/about";
 import Portfolio from "../components/portfolio";
 //import Contact from "../components/contact";
-import  Contact  from "@/components/contact2";
+import  Contact  from "@/components/contact";
 import myImageLoader from "../loader";
 import useSWR from "swr";
 import { useRef, useState, useEffect, RefObject } from "react";
