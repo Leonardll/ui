@@ -22,9 +22,9 @@ class MyDocument extends Document {
     }
     render() {
         return (
-            <Html lang="en" className="transition ease-in-out duration-1000 scroll-smooth">
+            <Html lang="en" className="transition ease-in-out duration-1000 scroll-smooth" suppressHydrationWarning>
                 <Head />
-                <body className= "min-h-screen flex  items-center justify-between">                    
+                <body className= "min-h-screen ">   
                     <Main />
                     <NextScript />
                 </body>

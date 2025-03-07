@@ -6,6 +6,9 @@
     .text-balance {
       text-wrap: balance;
     }
+    .container-full {
+      max-width: 100% !important; /* Use !important to override container's max-width */
+  }
   }
 
 

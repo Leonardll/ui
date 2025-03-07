@@ -1,7 +1,8 @@
 import React, { forwardRef, Ref, RefAttributes } from "react"
-import Footer from "../footer"
+import Footer from "../footer2"
 import { ThemeProvider } from "../themeProvider"
 import Header from "../header2"
+import AnimatedCursor from "../animations/animated-cursor"
 //import Hero from "@/components/hero"
 interface LayoutProps {
   children: React.ReactNode
@@ -15,10 +16,11 @@ const Layout = forwardRef(
         <Header />
         {/* <NavBar active={active} /> */}
         {/* <MastHead loader={myImageLoader} ref={ref} />  */}
-        <main className="flex w-full flex-1 flex-col items-center justify-center">
+        <main className="flex w-full  flex-1 flex-col  justify-center px-4 md:px6">
           {children}
         </main>
         <Footer />
+        <AnimatedCursor />
       </ThemeProvider>
     )
   }

@@ -58,7 +58,6 @@ export default function Stack(props) {
 
   useEffect(() => {
     if (data && data.length > 0) {
-      console.log(data)
       const formattedData: StackCategory[] = allCategories.map(
         (category) => ({
           category,
@@ -85,7 +84,7 @@ export default function Stack(props) {
   };
   return (
     <section id="stack" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-      <div className="container px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <FadeIn direction="up">

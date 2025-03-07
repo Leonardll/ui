@@ -2,7 +2,8 @@ import Hero from "@/components/hero";
 import StackSection from "../components/stackSection";
 import About from "../components/about2";
 import Portfolio from "../components/portfolio";
-import Contact from "../components/contact";
+//import Contact from "../components/contact";
+import  Contact  from "@/components/contact2";
 import myImageLoader from "../loader";
 import useSWR from "swr";
 import { useRef, useState, useEffect, RefObject } from "react";
@@ -23,7 +24,7 @@ export default function Home() {
         portfolio: useRef(null),
         contact: useRef(null),
     }
-    
+
     useEffect(() => {
         const handleScroll = () => {
             setPosition(window.scrollY + window.innerHeight / 2)
@@ -54,6 +55,7 @@ export default function Home() {
 
     return (
         <Layout ref={refs.home} active={activeSection}>
+
             <Hero />
             {/* <About ref={refs.about} /> */}
             <About ref={refs.about} />
@@ -62,6 +64,7 @@ export default function Home() {
             {/* <StackSection ref={refs.stack} data={data.data} loader={myImageLoader} /> */}
             {/* <Portfolio ref={refs.portfolio} loader={myImageLoader} data={data.data2} /> */}
             <Contact ref={refs.contact} />
+            {/* <Contact ref={refs.contact} /> */}
         </Layout>
     )
 }
