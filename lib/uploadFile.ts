@@ -1,4 +1,3 @@
-
 import {
   getStorage,
   ref,
@@ -7,26 +6,40 @@ import {
   uploadBytesResumable,
   StorageReference,
   UploadTask,
+  FirebaseStorage,
 } from "firebase/storage";
 import fs from "fs/promises";
 import path from "path";
-import { db } from "../firebaseConfig"; // import db from firebaseConfig.js
+import { app } from "../firebaseConfig"; // import db from firebaseConfig.js
 interface Metadata {
   contentType: string;
 }
 // Initialize storage with app
-const storage = db;
+const storage: FirebaseStorage = getStorage(app);
 
-const uploadToFirebase = async (file: File) => {
+const uploadToFirebase = async (file: File, filename: string) => {
   // Log the items in the directory
-  const storageRefList: StorageReference = ref(storage, "images/");
-  const res = await listAll(storageRefList);
+  const storageRefList: StorageReference = ref(storage, "images/"); // Specify the directory here. Corrected to directly target "images/"
+  console.log("Firebase - Listing directory:", storageRefList.fullPath); // Log the fullPath of the directory reference
 
-  console.log("Firebase Directory Contents:");
-  for (const item of res.items) {
-    console.log(item.fullPath);
+    // Log the directory where the file are stored before upload
+  const fileDir = path.resolve('./tmp')
+  console.log("Local file directory:", fileDir);
+    console.log(`Local file path: ${path.join(fileDir, filename)}`);
+
+  try {
+    const res = await listAll(storageRefList);
+
+    console.log("Firebase Directory Contents:");
+    for (const item of res.items) {
+      console.log(item.fullPath);
+    }
+  } catch (error) {
+      console.error("Error listing files:", error);
   }
-  const storageRef: StorageReference = ref(storage, `images/${file.name}`);
+
+  const storageRef: StorageReference = ref(storage, `images/${filename}`);
+    console.log("Firebase - Uploading to:", storageRef.fullPath); // Log the fullPath of the file reference
   const metadata: Metadata = {
     contentType: file.type,
   };
@@ -77,6 +90,21 @@ const uploadToFirebase = async (file: File) => {
 
 const downloadUrl = async (): Promise<string[]> => {
   const storageRef: StorageReference = ref(storage, "images/");
+  console.log("Firebase - Download directory:", storageRef.fullPath)
+  try {
+      const res = await listAll(storageRef);
+
+      console.log("Firebase - Download Firebase Directory Contents:");
+      if (res.items.length === 0) {
+          console.log("Firebase - No items found in this download directory.");
+      }
+      for (const item of res.items) {
+          console.log("Firebase -", item.fullPath);
+      }
+  } catch (error) {
+      console.error("Firebase - Error listing files:", error);
+  }
+
   const res = await listAll(storageRef);
   const urls: string[] = await Promise.all(
     res.items.map(async (itemRef) => {

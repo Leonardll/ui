@@ -59,8 +59,8 @@ export default function Home() {
             <About ref={refs.about} />
             <Services ref={refs.services} />
             <Stack ref={refs.stack} data={data.data} />
-            <StackSection ref={refs.stack} data={data.data} loader={myImageLoader} />
-            <Portfolio ref={refs.portfolio} loader={myImageLoader} data={data.data2} />
+            {/* <StackSection ref={refs.stack} data={data.data} loader={myImageLoader} /> */}
+            {/* <Portfolio ref={refs.portfolio} loader={myImageLoader} data={data.data2} /> */}
             <Contact ref={refs.contact} />
         </Layout>
     )

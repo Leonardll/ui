@@ -1,90 +1,96 @@
-// /root/Projects/crelatorDesign/ui/pages/api/firebase/upload.ts
+// pages/api/firebase/upload.ts
+import type { NextApiRequest, NextApiResponse } from 'next';
+import path from 'path';
+import { promises as fs } from 'fs';
+import { uploadToFirebase } from '@/lib/uploadFile'; // adjust the path as needed
 
-import type { NextApiRequest, NextApiResponse } from "next";
-import { uploadToFirebase, downloadUrl } from "@/lib/uploadFile";
-import path from "path";
-import fs from "fs/promises";
-import { IncomingForm, Files } from "formidable"; // Import IncomingForm
+// Allowed file extensions (including .svg)
+const allowedExtensions = ['.png', '.jpg', '.jpeg', '.gif', '.svg'];
 
-// Disable the default body parser
-export const config = {
-  api: {
-    bodyParser: false,
-  },
+// Mapping of file extensions to MIME types
+const mimeTypes: Record<string, string> = {
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.gif': 'image/gif',
+  '.svg': 'image/svg+xml',
 };
 
-// Use path.resolve to create an absolute path
-const uploadDir = path.resolve("./tmp");
+/**
+ * Custom NodeFile class to mimic the browser File interface.
+ * We extend Blob and implement the File interface.
+ */
+class NodeFile extends Blob implements File {
+  name: string;
+  lastModified: number;
+  webkitRelativePath: string;
 
-// Helper function to ensure the directory exists
-const mkdir = async () => {
-  try {
-    await fs.access(uploadDir);
-  } catch (e) {
-    await fs.mkdir(uploadDir, { recursive: true });
+  constructor(fileBuffer: Buffer, name: string, options: { type: string; lastModified: number }) {
+    super([fileBuffer], { type: options.type });
+    this.name = name;
+    this.lastModified = options.lastModified;
+    this.webkitRelativePath = ''; // Set to empty string if not used
   }
-};
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method === "POST") {
-    try {
-      await mkdir();
-      const form = new IncomingForm({
-        uploadDir, // Use the absolute path here
-        filename: (_name, _ext, part) => {
-          const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-          return `${part.name || "unknown"}-${uniqueSuffix}${path.extname(
-            part.originalFilename || ""
-          )}`;
-        },
-      });
+  // Some Firebase internals expect a 'byteLength' property on File.
+  // We define a getter that returns the Blob's size.
+  get byteLength(): number {
+    return this.size;
+  }
+}
 
-      const { files } = await new Promise<{ files: Files }>(
-        (resolve, reject) => {
-          form.parse(req, (err, _, files) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve({ files });
-            }
-          });
-        }
-      );
-      console.log("Files:", files);
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  // Only allow POST requests
+  if (req.method !== 'POST') {
+    res.setHeader('Allow', ['POST']);
+    return res.status(405).json({ success: false, error: `Method ${req.method} Not Allowed` });
+  }
 
-      if (Object.keys(files).length === 0) {
-        throw new Error("No file uploaded.");
-      }
+  try {
+    const publicDir = path.join(process.cwd(), 'public');
+    // Read all files in the public directory
+    const allFiles = await fs.readdir(publicDir);
+    // Filter files to include only allowed image extensions (case-insensitive)
+    const imageFiles = allFiles.filter((file) => {
+      const ext = path.extname(file).toLowerCase();
+      return allowedExtensions.includes(ext);
+    });
 
-      const fileKey = Object.keys(files)[0];
-      const file = Array.isArray(files[fileKey])
-        ? files[fileKey][0]
-        : files[fileKey]!;
-
-      const name = file.originalFilename || "unknown";
-      const type = file.mimetype || "unknown";
-
-      const newFile: File = new File(
-        [await fs.readFile(file.filepath)],
-        name,
-        { type: type }
-      );
-
-      await uploadToFirebase(newFile);
-      const url = await downloadUrl();
-
-      return res
-        .status(200)
-        .json({ url, message: "File uploaded successfully!" });
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      return res.status(500).json({ message: (error as Error).message });
+    if (imageFiles.length === 0) {
+      console.warn('No image files found in the public directory.');
+      return res.status(400).json({ success: false, error: 'No images available for upload' });
     }
-  } else {
-    res.setHeader("Allow", ["POST"]);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+
+    // Create an array of upload promises for each image file
+    const uploadPromises = imageFiles.map(async (file) => {
+      const filePath = path.join(publicDir, file);
+      // Read file data as a Buffer
+      const fileBuffer = await fs.readFile(filePath);
+      const ext = path.extname(file).toLowerCase();
+      const mimeType = mimeTypes[ext] || 'application/octet-stream';
+
+      // Create a NodeFile instance that mimics a browser File
+      const fileForUpload = new NodeFile(fileBuffer, file, { type: mimeType, lastModified: Date.now() });
+
+      // Call uploadToFirebase with the custom File object and its filename
+      const downloadURL = await uploadToFirebase(fileForUpload, file);
+      return downloadURL;
+    });
+
+    // Wait for all uploads to complete concurrently
+    const downloadURLs = await Promise.all(uploadPromises);
+
+    // Respond with a structured JSON object containing the download URLs
+    return res.status(200).json({
+      success: true,
+      uploadedCount: downloadURLs.length,
+      downloadURLs,
+    });
+  } catch (error: any) {
+    console.error('Error uploading images:', error);
+    return res.status(500).json({
+      success: false,
+      error: 'Failed to upload images',
+    });
   }
 }

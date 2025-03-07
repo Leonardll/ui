@@ -2,7 +2,7 @@ import "@/styles/globals.css"
 import Head from "next/head"
 import { Analytics } from "@vercel/analytics/react"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
     return (
         <>
             <Head>
