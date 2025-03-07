@@ -1,39 +1,39 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Button } from "@/components/uiElemts/button"
-import { CheckCircle } from "lucide-react"
-import FadeIn from "@/components/animations/fade-in"
-import StaggerContainer from "@/components/animations/stagger-container"
-import StaggerItem from "@/components/animations/stagger-item"
-import { motion } from "framer-motion"
-
+import Image from "next/image";
+import { Button } from "@/components/uiElemts/button";
+import { CheckCircle } from "lucide-react";
+import FadeIn from "@/components/animations/fade-in";
+import StaggerContainer from "@/components/animations/stagger-container";
+import StaggerItem from "@/components/animations/stagger-item";
+import { motion } from "framer-motion";
+import { forwardRef, Ref } from "react";
 
 function Avatar() {
-    return (
-        <Image
-            //src="/images/avataaarswhitebg.svg"
-            src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
-            alt="avatar"
-            width={450}
-            height={450}
-            //responvive={true}
-            className="rounded-full mb-5 w-60"
-            priority={true}
-            placeholder="blur"
-            blurDataURL="https://picsum.photos/id/870/200/300?grayscale&blur=2"
-        />
-    )
+  return (
+    <Image
+      src="https://firebasestorage.googleapis.com/v0/b/newlandingpage-918dc.appspot.com/o/images%2Favatar.svg?alt=media&token=8e5d9915-c16e-42ee-8506-365ed98ce3b7"
+      alt="avatar"
+      width={450}
+      height={450}
+      className="rounded-full mb-5 w-60"
+      priority={true}
+      placeholder="blur"
+      blurDataURL="https://picsum.photos/id/870/200/300?grayscale&blur=2"
+    />
+  );
 }
-export default function About() {
+
+// Add forwardRef and specify the ref type
+const About = forwardRef<HTMLElement>((props, ref) => {
   const features = [
     "Responsive design for all devices",
     "Modern, clean code architecture",
     "Performance optimized for speed",
-  ]
+  ];
 
   return (
-    <section  id="about" className="w-full py-12 md:py-24 lg:py-32 bg-background">
+    <section ref={ref} id="about" className="w-full py-12 md:py-24 lg:py-32 bg-background">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-4">
@@ -78,12 +78,13 @@ export default function About() {
           </div>
           <FadeIn direction="left" delay={0.4} className="mx-auto lg:order-last">
             <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-                <Avatar />
+              <Avatar />
             </motion.div>
           </FadeIn>
         </div>
       </div>
     </section>
-  )
-}
+  );
+});
 
+export default About;

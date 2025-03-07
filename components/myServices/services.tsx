@@ -1,13 +1,15 @@
-"use client"
+"use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/uiElemts/card"
-import { Code, Layout, Globe,Link  } from "lucide-react"
-import FadeIn from "@/components/animations/fade-in"
-import StaggerContainer from "@/components/animations/stagger-container"
-import StaggerItem from "@/components/animations/stagger-item"
-import { motion } from "framer-motion"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/uiElemts/card";
+import { Code, Layout, Globe, Link } from "lucide-react";
+import FadeIn from "@/components/animations/fade-in";
+import StaggerContainer from "@/components/animations/stagger-container";
+import StaggerItem from "@/components/animations/stagger-item";
+import { motion } from "framer-motion";
+import { forwardRef } from "react";
 
-export default function Services() {
+// Add forwardRef and specify the ref type
+const Services = forwardRef<HTMLElement>((props, ref) => {
   const services = [
     {
       icon: <Layout className="h-8 w-8 text-primary" />,
@@ -28,11 +30,11 @@ export default function Services() {
       icon: <Link className="h-8 w-8 text-primary" />,
       title: "Smart Contract Integration",
       description: "Making the brigde between web3 and web2, I can help you integrate smart contracts into your applications.",
-    }
-  ]
+    },
+  ];
 
   return (
-    <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
+    <section ref={ref} id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
@@ -72,6 +74,7 @@ export default function Services() {
         </StaggerContainer>
       </div>
     </section>
-  )
-}
+  );
+});
 
+export default Services;
