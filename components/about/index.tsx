@@ -88,3 +88,4 @@ const About = forwardRef<HTMLElement>((props, ref) => {
 });
 
 export default About;
+About.displayName = 'About'; 

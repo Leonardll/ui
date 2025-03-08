@@ -5,6 +5,9 @@ const nextConfig = withImages({
     reactStrictMode: true,
     trailingSlash: true,
     distDir: "out",
+    experimental: {
+        forceSwcTransforms: true,
+      },
     images: {
         //unoptimized: true,
         loader: "custom",

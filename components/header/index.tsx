@@ -13,7 +13,7 @@ import {
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "../uiElemts/button";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -35,14 +35,14 @@ export default function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  const routes = [
+  const routes = useMemo(() => [
     { href: "/", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#services", label: "Services" },
     { href: "#stack", label: "Stack" },
     { href: "/portfolio", label: "Portfolio" },
     { href: "#contact", label: "Contact" },
-  ];
+  ], []);
 
   useEffect(() => {
     setMounted(true);

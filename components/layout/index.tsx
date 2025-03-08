@@ -24,7 +24,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
     );
   }
 );
-
+Layout.displayName = "Layout";
 export default Layout as <T>(
   props: LayoutProps & RefAttributes<T>
 ) => React.ReactElement | null;
