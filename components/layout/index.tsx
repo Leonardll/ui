@@ -19,7 +19,7 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(
             </div>
         </main>
         <Footer />
-        <AnimatedCursor />
+        <AnimatedCursor className ="hidden md:block" />
       </ThemeProvider>
     );
   }
