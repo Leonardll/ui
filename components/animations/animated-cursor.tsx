@@ -33,11 +33,11 @@ export default function AnimatedCursor({ className }: { className?: string }) {
   return (
     <>
       <div
-        className="fixed top-0 left-0 w-[40px] h-[40px] rounded-full bg-[#1abc9c] pointer-events-none z-[99999999] "
+        className="fixed top-0 left-0 w-[20px] h-[20px] rounded-full bg-[#1abc9c] pointer-events-none z-[99999999] hidden md:block"
         ref={cursorRef}
       />
       <div
-        className="fixed top-0 left-0 w-[5px] h-[5px] rounded-full bg-white pointer-events-none z-[99999999]  "
+        className="fixed top-0 left-0 w-[5px] h-[5px] rounded-full bg-white pointer-events-none z-[99999999]  hidden md:block"
         ref={dotRef}
       />
     </>
