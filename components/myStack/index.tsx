@@ -110,7 +110,6 @@ export default function Stack(props) {
           delay={0.3}
         >
           {stackData.map((category, index) => {
-            console.log(category)
             const isExpanded = expandedCategories[category.category] || false;
             const displayedItems = isExpanded
               ? category.items

@@ -1,24 +1,17 @@
 "use client";
 
 import Layout from "@/components/layout";
-import PortfolioHeader from "@/components/portfolio1/portfolioHeader";
-import PortfolioGrid from "@/components/portfolio1/portfolioGrid";
+import PortfolioHeader from "@/components/portfolio/portfolioHeader";
+import PortfolioGrid from "@/components/portfolio/portfolioGrid";
 import useSWR from "swr";
 import { useRef, RefObject } from "react";
-
+import type { PortfolioItem } from "@/types/portfolio";
 export const metadata = {
   title: "Portfolio - Modern Website Template",
   description: "Explore our portfolio of projects and case studies",
 };
 
-interface PortfolioItem {
-  _id: string;
-  imgSrc: string;
-  title: string;
-  description: string;
-  link: string;
-  github: string;
-}
+
 
 interface DataResponse {
     data: any;

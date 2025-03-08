@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Link as LinkScroll } from "react-scroll";
+import { Link as LinkScroll, Events } from "react-scroll";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -10,15 +10,31 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/uiElemts/dropdown-menu";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "../uiElemts/button";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export default function Header() {
   const pathname = usePathname();
+  // Normalize pathname to remove trailing slash if necessary.
+  const normalizedPathname =
+    pathname !== "/" && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [isTopPage, setIsTopPage] = useState(true);
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+  };
+
   const routes = [
     { href: "/", label: "Home" },
     { href: "#about", label: "About" },
@@ -30,7 +46,71 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
+    Events.scrollEvent.register("begin", function (to, element) {});
+    Events.scrollEvent.register("end", function (to, element) {
+      if (to) {
+        setActiveSection(to);
+      }
+      const isTop = window.scrollY < 100;
+      setIsTopPage(isTop);
+    });
+    const checkScrollPosition = () => {
+      const isTop = window.scrollY < 100;
+      setIsTopPage(isTop);
+    };
+    window.addEventListener("scroll", checkScrollPosition);
+    return () => {
+      Events.scrollEvent.remove("begin");
+      Events.scrollEvent.remove("end");
+      window.removeEventListener("scroll", checkScrollPosition);
+    };
   }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+    const handleRouteChange = () => {
+      closeMobileMenu();
+    };
+    window.addEventListener("hashchange", handleRouteChange);
+    return () => {
+      window.removeEventListener("hashchange", handleRouteChange);
+    };
+  }, [isMobileMenuOpen]);
+
+  // IntersectionObserver for homepage sections
+  useEffect(() => {
+    if (normalizedPathname !== "/") return;
+    
+    const sectionIds = routes
+      .filter((route) => route.href.startsWith("#"))
+      .map((route) => route.href.substring(1));
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Only update activeSection if not at the very top
+        if (window.scrollY < 100) return;
+        const visibleEntries = entries.filter((entry) => entry.isIntersecting);
+        if (visibleEntries.length > 0) {
+          const bestEntry = visibleEntries.reduce((prev, current) =>
+            prev.intersectionRatio > current.intersectionRatio ? prev : current
+          );
+          setActiveSection(bestEntry.target.id);
+        }
+      },
+      { threshold: 0.6 }
+    );
+    
+    sectionIds.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+    
+    return () => {
+      observer.disconnect();
+    };
+  }, [normalizedPathname, routes]);
 
   if (!mounted) {
     return null;
@@ -42,35 +122,81 @@ export default function Header() {
         <Link href="/" className="font-bold text-2xl">
           Full Stack Developer
         </Link>
-        <div className="ml-auto flex items-center space-x-6">
+
+        {/* Mobile Menu Toggle */}
+        <div className="md:hidden ml-auto">
+          <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
+            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </Button>
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:ml-auto md:flex md:items-center md:space-x-6">
           {routes.map((route) => {
-            const isActive =
-              pathname === route.href ||
-              (pathname === "/" && route.href === "#about");
-            return route.href.startsWith("#") ? (
-              <LinkScroll
-                to={route.href.substring(1)}
-                smooth={true}
-                offset={-100}
-                key={route.label}
-                className={cn(
-                  "transition-all duration-300 hover:text-primary",
-                  isActive ? "text-primary" : ""
+            // Only activate hash links when not at top.
+            const isLinkScrollActive =
+              route.href.startsWith("#") &&
+              !isTopPage &&
+              activeSection === route.href.substring(1);
+            const isLinkActive =
+              !route.href.startsWith("#") &&
+              route.href !== "/" &&
+              normalizedPathname === route.href;
+            const isHomeActive =
+              route.href === "/" && normalizedPathname === "/" && isTopPage;
+
+            let isActive = isLinkScrollActive || isLinkActive || isHomeActive;
+
+            return (
+              <div key={route.label}>
+                {route.href.startsWith("#") ? (
+                  normalizedPathname === "/" ? (
+                    <LinkScroll
+                      to={route.href.substring(1)}
+                      smooth={true}
+                      offset={-100}
+                      onClick={closeMobileMenu}
+                      className={cn(
+                        "relative transition-all duration-300 hover:text-primary cursor-pointer",
+                        isActive ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      {route.label}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                      )}
+                    </LinkScroll>
+                  ) : (
+                    <Link
+                      href={`/${route.href}`}
+                      onClick={closeMobileMenu}
+                      className={cn(
+                        "relative transition-all duration-300 hover:text-primary",
+                        isActive ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      {route.label}
+                    </Link>
+                  )
+                ) : (
+                  <Link
+                    href={route.href}
+                    onClick={() => {
+                      closeMobileMenu();
+                      if (route.href === "/") setActiveSection(null);
+                    }}
+                    className={cn(
+                      "relative transition-all duration-300 hover:text-primary",
+                      isActive ? "text-primary" : "text-muted-foreground"
+                    )}
+                  >
+                    {route.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                    )}
+                  </Link>
                 )}
-              >
-                {route.label}
-              </LinkScroll>
-            ) : (
-              <Link
-                href={route.href}
-                key={route.label}
-                className={cn(
-                  "transition-all duration-300 hover:text-primary",
-                  isActive ? "text-primary" : ""
-                )}
-              >
-                {route.label}
-              </Link>
+              </div>
             );
           })}
           <DropdownMenu>
@@ -103,6 +229,113 @@ export default function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          className={cn(
+            "md:hidden fixed top-16 left-0 w-full h-screen bg-background z-40 transition-all duration-300",
+            isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          )}
+        >
+          <div className="flex flex-col space-y-6 p-6">
+            {routes.map((route) => {
+              const isLinkScrollActive =
+                route.href.startsWith("#") &&
+                !isTopPage &&
+                activeSection === route.href.substring(1);
+              const isLinkActive =
+                !route.href.startsWith("#") &&
+                route.href !== "/" &&
+                normalizedPathname === route.href;
+              const isHomeActive =
+                route.href === "/" && normalizedPathname === "/" && isTopPage;
+
+              let isActive = isLinkScrollActive || isLinkActive || isHomeActive;
+
+              return (
+                <div key={route.label} className="relative">
+                  {route.href.startsWith("#") ? (
+                    normalizedPathname === "/" ? (
+                      <LinkScroll
+                        to={route.href.substring(1)}
+                        smooth={true}
+                        offset={-100}
+                        onClick={closeMobileMenu}
+                        className={cn(
+                          "block w-full transition-all duration-300 text-2xl cursor-pointer",
+                          isActive ? "text-primary" : "text-muted-foreground"
+                        )}
+                      >
+                        {route.label}
+                        {isActive && (
+                          <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                        )}
+                      </LinkScroll>
+                    ) : (
+                      <Link
+                        href={`/${route.href}`}
+                        onClick={closeMobileMenu}
+                        className={cn(
+                          "block w-full transition-all transition-color duration-300 text-2xl",
+                          isActive ? "text-primary" : "text-muted-foreground"
+                        )}
+                      >
+                        {route.label}
+                      </Link>
+                    )
+                  ) : (
+                    <Link
+                      href={route.href}
+                      onClick={() => {
+                        closeMobileMenu();
+                        if (route.href === "/") setActiveSection(null);
+                      }}
+                      className={cn(
+                        "block w-full transition-all duration-300 text-2xl",
+                        isActive ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      {route.label}
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                      )}
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon">
+                  <Sun
+                    className={cn(
+                      "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0",
+                      resolvedTheme === "dark" && "rotate-180 scale-0"
+                    )}
+                  />
+                  <Moon
+                    className={cn(
+                      "absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100",
+                      resolvedTheme === "dark" && "rotate-0 scale-100"
+                    )}
+                  />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
       </nav>
     </header>
