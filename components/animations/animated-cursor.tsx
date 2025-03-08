@@ -1,56 +1,45 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion, useMotionValue, useSpring } from "framer-motion"
+import { useEffect, useRef, useState } from "react";
 
 export default function AnimatedCursor() {
-  const [isVisible, setIsVisible] = useState(false)
-  const cursorX = useMotionValue(-100)
-  const cursorY = useMotionValue(-100)
-
-  // Create springs with some damping and stiffness for smooth following
-  const springConfig = { damping: 25, stiffness: 300 }
-  const cursorXSpring = useSpring(cursorX, springConfig)
-  const cursorYSpring = useSpring(cursorY, springConfig)
+  const cursorRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX)
-      cursorY.set(e.clientY)
-    }
+      setMousePosition({
+        x: e.clientX,
+        y: e.clientY,
+      });
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
+      if (dotRef.current) {
+        dotRef.current.style.left = `${e.clientX}px`;
+        dotRef.current.style.top = `${e.clientY}px`;
+      }
+    };
 
-    const handleMouseEnter = () => setIsVisible(true)
-    const handleMouseLeave = () => setIsVisible(false)
-
-    window.addEventListener("mousemove", moveCursor)
-    window.addEventListener("mouseenter", handleMouseEnter)
-    window.addEventListener("mouseleave", handleMouseLeave)
+    document.addEventListener("mousemove", moveCursor);
 
     return () => {
-      window.removeEventListener("mousemove", moveCursor)
-      window.removeEventListener("mouseenter", handleMouseEnter)
-      window.removeEventListener("mouseleave", handleMouseLeave)
-    }
-  }, [cursorX, cursorY])
+      document.removeEventListener("mousemove", moveCursor);
+    };
+  }, []);
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 z-50 pointer-events-none mix-blend-difference"
-      style={{
-        x: cursorXSpring,
-        y: cursorYSpring,
-      }}
-    >
-      <motion.div
-        className="w-8 h-8 bg-white rounded-full flex items-center justify-center"
-        initial={{ scale: 0.5, opacity: 0 }}
-        animate={{
-          scale: isVisible ? [0.5, 1] : 0.5,
-          opacity: isVisible ? 1 : 0,
-        }}
-        transition={{ duration: 0.2 }}
+    <>
+      <div
+        className="fixed top-0 left-0 w-[40px] h-[40px] rounded-full bg-[#1abc9c] pointer-events-none z-[99999999] "
+        ref={cursorRef}
       />
-    </motion.div>
-  )
+      <div
+        className="fixed top-0 left-0 w-[5px] h-[5px] rounded-full bg-white pointer-events-none z-[99999999]  "
+        ref={dotRef}
+      />
+    </>
+  );
 }
-

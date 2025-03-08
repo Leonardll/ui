@@ -24,7 +24,7 @@ class MyDocument extends Document {
         return (
             <Html lang="en" className="transition ease-in-out duration-1000 scroll-smooth" suppressHydrationWarning>
                 <Head />
-                <body className= "min-h-screen ">   
+                <body className= "min-h-screen pt-16">   
                     <Main />
                     <NextScript />
                 </body>

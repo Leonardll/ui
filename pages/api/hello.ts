@@ -11,7 +11,7 @@ interface StackItem {
 }
 
 interface PortfolioItem {
-  _id: string;
+  _id?: string;
   imgSrc: string;
   title: string;
   description: string;
