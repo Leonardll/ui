@@ -26,15 +26,19 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": [
+        "./*"
+      ]
+    },
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
-, "pages/index.js"  ],
+    ".next/types/**/*.ts",
+    "pages/index.js"
+  ],
   "exclude": [
     "node_modules"
   ]
