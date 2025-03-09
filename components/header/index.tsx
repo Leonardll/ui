@@ -163,7 +163,7 @@ export default function Header() {
                     >
                       {route.label}
                       {isActive && (
-                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
                       )}
                     </LinkScroll>
                   ) : (
@@ -192,7 +192,7 @@ export default function Header() {
                   >
                     {route.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                      <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
                     )}
                   </Link>
                 )}
@@ -269,7 +269,7 @@ export default function Header() {
                       >
                         {route.label}
                         {isActive && (
-                          <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                          <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
                         )}
                       </LinkScroll>
                     ) : (
@@ -292,13 +292,13 @@ export default function Header() {
                         if (route.href === "/") setActiveSection(null);
                       }}
                       className={cn(
-                        "block w-full transition-all duration-300 text-2xl",
+                        "block w-full transition-all duration-300 text-2xl relative",
                         isActive ? "text-primary" : "text-muted-foreground"
                       )}
                     >
                       {route.label}
                       {isActive && (
-                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary" />
+                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
                       )}
                     </Link>
                   )}
