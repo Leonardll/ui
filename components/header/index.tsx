@@ -120,7 +120,7 @@ export default function Header() {
     <header className="fixed top-0 w-full h-16 z-50 border-b bg-background/95 backdrop-blur-sm">
       <nav className="container flex items-center h-full px-4 md:px-6">
         <Link href="/" className="font-bold text-2xl">
-          Full Stack Developer
+        Leo&apos;s Digital Home
         </Link>
 
         {/* Mobile Menu Toggle */}
@@ -163,7 +163,7 @@ export default function Header() {
                     >
                       {route.label}
                       {isActive && (
-                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
+                        <span className="absolute -bottom-0 left-0 right-0 h-0.5  bg-primary" />
                       )}
                     </LinkScroll>
                   ) : (
@@ -172,7 +172,7 @@ export default function Header() {
                       onClick={closeMobileMenu}
                       className={cn(
                         "relative transition-all duration-300 hover:text-primary",
-                        isActive ? "text-primary" : "text-muted-foreground"
+                        isActive ? "text-primary" : "text-muted-foreground/80"
                       )}
                     >
                       {route.label}
@@ -192,8 +192,8 @@ export default function Header() {
                   >
                     {route.label}
                     {isActive && (
-                      <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
-                    )}
+                        <span className="absolute -bottom-0 left-0 right-0 h-0.5  bg-primary" />
+                      )}
                   </Link>
                 )}
               </div>
@@ -263,14 +263,12 @@ export default function Header() {
                         offset={-100}
                         onClick={closeMobileMenu}
                         className={cn(
-                          "block w-full transition-all duration-300 text-2xl cursor-pointer",
+                          "block  transition-all duration-300 text-2xl cursor-pointer",
                           isActive ? "text-primary" : "text-muted-foreground"
                         )}
                       >
                         {route.label}
-                        {isActive && (
-                          <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
-                        )}
+                    
                       </LinkScroll>
                     ) : (
                       <Link
@@ -297,9 +295,7 @@ export default function Header() {
                       )}
                     >
                       {route.label}
-                      {isActive && (
-                        <span className="absolute bottom-0 left-0 h-[2px] w-full bg-primary hidden md:block" />
-                      )}
+                    
                     </Link>
                   )}
                 </div>
