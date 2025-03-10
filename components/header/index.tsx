@@ -118,7 +118,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 w-full h-16 z-50 border-b bg-background/95 backdrop-blur-sm">
-      <nav className="container flex items-center h-full px-4 md:px-6">
+      <nav className="container flex items-center h-full px-4 md:px-6 gap-6">
       <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -168,7 +168,12 @@ export default function Header() {
                     >
                       {route.label}
                       {isActive && (
-                        <span className="absolute -bottom-0 left-0 right-0 h-0.5  bg-primary" />
+                        <motion.div 
+                        layoutId="underline"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 } }
+                        >
+                        <span className="absolute -bottom-3.5 left-0 right-0 h-0.5  bg-primary" />
+                        </motion.div>
                       )}
                     </LinkScroll>
                   ) : (
@@ -197,7 +202,12 @@ export default function Header() {
                   >
                     {route.label}
                     {isActive && (
-                        <span className="absolute -bottom-0 left-0 right-0 h-0.5  bg-primary" />
+                      <motion.div 
+                      layoutId="underline"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 } }
+                      >
+                        <span className="absolute -bottom-3.5 left-0 right-0 h-0.5  bg-primary" />
+                      </motion.div>
                       )}
                   </Link>
                 )}
