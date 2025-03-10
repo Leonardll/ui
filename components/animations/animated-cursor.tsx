@@ -56,7 +56,7 @@ export default function AnimatedCursor({ className }: { className?: string }) {
     <>
       {/* Main cursor */}
       <div
-        className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 transition-all duration-100 ${
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-50 transition-all duration-100 hidden md:block ${
           visible ? "opacity-100" : "opacity-0"
         } ${clicked ? "scale-75" : "scale-100"} ${
           linkHovered ? "scale-150 bg-primary/30" : "bg-primary/50"
@@ -69,7 +69,7 @@ export default function AnimatedCursor({ className }: { className?: string }) {
 
       {/* Trailing dot */}
       <div
-        className={`fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-50 transition-opacity duration-300 ${
+        className={`fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-50 transition-opacity duration-300 hidden md:block ${
           visible ? "opacity-100" : "opacity-0"
         }`}
         style={{
