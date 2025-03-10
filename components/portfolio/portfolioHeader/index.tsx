@@ -6,7 +6,7 @@ export default function PortfolioHeader() {
     <div className="flex flex-col items-center justify-center space-y-4 text-center">
       <div className="space-y-2">
         <FadeIn direction="up">
-          <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm">Our Work</div>
+          <div className="inline-block rounded-lg bg-background px-3 py-3 text-sm">Portfolio</div>
         </FadeIn>
         <FadeIn direction="up" delay={0.1}>
           <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Recent Projects</h2>

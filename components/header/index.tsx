@@ -14,7 +14,7 @@ import { Moon, Sun, Menu, X } from "lucide-react";
 import { Button } from "../uiElemts/button";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useMemo } from "react";
-
+import { motion } from "framer-motion";
 export default function Header() {
   const pathname = usePathname();
   // Normalize pathname to remove trailing slash if necessary.
@@ -119,10 +119,15 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full h-16 z-50 border-b bg-background/95 backdrop-blur-sm">
       <nav className="container flex items-center h-full px-4 md:px-6">
-        <Link href="/" className="font-bold text-2xl">
+      <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+          >
+        <Link href="/" className="font-bold text-xl">
         Leo&apos;s Digital Home
         </Link>
-
+        </motion.div>
         {/* Mobile Menu Toggle */}
         <div className="md:hidden ml-auto">
           <Button variant="ghost" size="icon" onClick={toggleMobileMenu}>
@@ -157,8 +162,8 @@ export default function Header() {
                       offset={-100}
                       onClick={closeMobileMenu}
                       className={cn(
-                        "relative transition-all duration-300 hover:text-primary cursor-pointer",
-                        isActive ? "text-primary" : "text-muted-foreground"
+                        "relative transition-colors duration-300 hover:text-primary cursor-pointer",
+                        isActive ? "text-primary" : "font-medium"
                       )}
                     >
                       {route.label}
@@ -171,8 +176,8 @@ export default function Header() {
                       href={`/${route.href}`}
                       onClick={closeMobileMenu}
                       className={cn(
-                        "relative transition-all duration-300 hover:text-primary",
-                        isActive ? "text-primary" : "text-muted-foreground/80"
+                        "relative  transition-colors duration-300 hover:text-primary",
+                        isActive ? "text-primary" : "font-medium"
                       )}
                     >
                       {route.label}
@@ -186,8 +191,8 @@ export default function Header() {
                       if (route.href === "/") setActiveSection(null);
                     }}
                     className={cn(
-                      "relative transition-all duration-300 hover:text-primary",
-                      isActive ? "text-primary" : "text-muted-foreground"
+                      "relative transition-colors duration-300 hover:text-primary",
+                      isActive ? "text-primary" : "font-medium"
                     )}
                   >
                     {route.label}
@@ -263,8 +268,8 @@ export default function Header() {
                         offset={-100}
                         onClick={closeMobileMenu}
                         className={cn(
-                          "block  transition-all duration-300 text-2xl cursor-pointer",
-                          isActive ? "text-primary" : "text-muted-foreground"
+                          "block  transition-colors duration-300  cursor-pointer",
+                          isActive ? "text-primary" : "font-medium"
                         )}
                       >
                         {route.label}
@@ -275,8 +280,8 @@ export default function Header() {
                         href={`/${route.href}`}
                         onClick={closeMobileMenu}
                         className={cn(
-                          "block w-full transition-all transition-color duration-300 text-2xl",
-                          isActive ? "text-primary" : "text-muted-foreground"
+                          "block w-full transition-colors duration-300",
+                          isActive ? "text-primary" : "font-medium"
                         )}
                       >
                         {route.label}
@@ -290,8 +295,8 @@ export default function Header() {
                         if (route.href === "/") setActiveSection(null);
                       }}
                       className={cn(
-                        "block w-full transition-all duration-300 text-2xl relative",
-                        isActive ? "text-primary" : "text-muted-foreground"
+                        "block w-full  transition-colors duration-300 relative",
+                        isActive ? "text-primary" : "font-medium"
                       )}
                     >
                       {route.label}

@@ -89,17 +89,17 @@ export default function Stack(props) {
           <div className="space-y-2">
             <FadeIn direction="up">
               <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm">
-                Our Stack
+                My Stack
               </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.1}>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                Technologies We Use
+                Technologies I Use
               </h2>
             </FadeIn>
             <FadeIn direction="up" delay={0.2}>
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                We leverage cutting-edge technologies to build robust and
+                I leverage cutting-edge technologies to build robust and
                 scalable applications.
               </p>
             </FadeIn>
