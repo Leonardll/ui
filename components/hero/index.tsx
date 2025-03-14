@@ -18,7 +18,7 @@ export default function Hero() {
             />
             <FadeIn delay={0.5} direction="up">
               <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl">
-              Full Stack Developer with expertise in blockchain, contract integration, music rights analyst, and trading.              </p>
+              Full Stack Developer with expertise in blockchain, contract integration, music rights, and trading.              </p>
             </FadeIn>
           </div>
           <FadeIn delay={0.8} direction="up">
