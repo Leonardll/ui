@@ -6,7 +6,7 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
     return (
         <>
             <Head>
-                <title>Full Stack Developer</title>
+                <title>Leo&apos;s Digital Home</title>
                 <meta
                     property="og:description"
                     name="description"
