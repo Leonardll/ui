@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
                 <meta
                     property="og:description"
                     name="description"
-                    content="Leo Lator - Full Stack Developer | Building Web Applications and Innovative Solutions"
+                    content="Leonard Lator - Full Stack Developer | Building Web Applications and Innovative Solutions"
                 />
                 <meta property="og:title" name="title" content="Leo's Digital Home" />
                 <meta
