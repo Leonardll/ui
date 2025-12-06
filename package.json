@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.6",
@@ -24,8 +24,8 @@
     "clsx": "^2.1.1",
     "cookie": "^0.5.0",
     "dotenv": "^16.0.3",
-    "eslint": "8.27.0",
-    "eslint-config-next": "13.0.3",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.7",
     "firebase": "^9.15.0",
     "firebase-admin": "^13.2.0",
     "formidable": "^3.5.2",
@@ -33,11 +33,11 @@
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.477.0",
     "mongodb": "^4.13.0",
-    "next": "^15.2.0",
+    "next": "16.0.7",
     "next-images": "^1.8.4",
     "next-themes": "^0.4.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-icons": "^4.7.1",
     "react-scroll": "^1.9.3",
     "swr": "^2.0.1",
@@ -47,16 +47,20 @@
     "yup": "^0.32.11"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^15.2.1",
+    "@next/eslint-plugin-next": "16.0.7",
     "@tailwindcss/forms": "^0.5.3",
     "@types/node": "^22.13.9",
-    "@types/react": "19.0.10",
-    "@types/react-dom": "^19.0.4",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.19",
     "prettier": "^2.7.1",
     "tailwindcss": "^3.2.4",
     "tailwindcss-font-inter": "^4.0.0",
     "typescript": "5.8.2"
+  },
+  "resolutions": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }
