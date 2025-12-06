@@ -1,16 +1,14 @@
 /** @type {import('next').NextConfig} */
-const withImages = require("next-images")
-
-const nextConfig = withImages({
+const nextConfig = {
     turbopack: {
-    // ...
-  },
+        root: __dirname,
+    },
     reactStrictMode: true,
     trailingSlash: true,
     distDir: "out",
     experimental: {
         forceSwcTransforms: true,
-      },
+    },
     images: {
         //unoptimized: true,
         loader: "custom",
@@ -19,12 +17,24 @@ const nextConfig = withImages({
         disableStaticImages: true,
         dangerouslyAllowSVG: true,
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
-        domains: [
-            "my-landing-page-52061.web.app",
-            "firebasestorage.googleapis.com",
-            "assets.poap.xyz",
-            "www.unicohogar.com",
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "my-landing-page-52061.web.app",
+            },
+            {
+                protocol: "https",
+                hostname: "firebasestorage.googleapis.com",
+            },
+            {
+                protocol: "https",
+                hostname: "assets.poap.xyz",
+            },
+            {
+                protocol: "https",
+                hostname: "www.unicohogar.com",
+            },
         ],
     },
-})
-module.exports = nextConfig
+};
+module.exports = nextConfig;

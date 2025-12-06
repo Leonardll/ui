@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, Variants } from "framer-motion"
 import type { ReactNode } from "react"
 
 interface StaggerItemProps {
@@ -10,8 +10,13 @@ interface StaggerItemProps {
   distance?: number
 }
 
-export default function StaggerItem({ children, className = "", direction = "up", distance = 30 }: StaggerItemProps) {
-  const getDirectionOffset = () => {
+export default function StaggerItem({
+  children,
+  className = "",
+  direction = "up",
+  distance = 30,
+}: StaggerItemProps) {
+  const getDirectionOffset = (): { x?: number; y?: number } => {
     switch (direction) {
       case "up":
         return { y: distance }
@@ -26,7 +31,7 @@ export default function StaggerItem({ children, className = "", direction = "up"
     }
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       ...getDirectionOffset(),

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, Variants } from "framer-motion"
 import { useRef } from "react"
 
 interface AnimatedTextProps {
@@ -17,7 +17,7 @@ export default function AnimatedText({ text, className = "", once = true, delay 
   const words = text.split(" ")
 
   // Variants for the container
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
@@ -26,7 +26,7 @@ export default function AnimatedText({ text, className = "", once = true, delay 
   }
 
   // Variants for each word
-  const child = {
+  const child: Variants = {
     hidden: {
       opacity: 0,
       y: 20,

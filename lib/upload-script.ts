@@ -27,7 +27,7 @@
 
 //   constructor(fileBuffer: Buffer, name: string, options: { type: string; lastModified: number }) {
 //     super([fileBuffer], { type: options.type });
-//     this.name = name;
+//    this.name = name;
 //     this.lastModified = options.lastModified;
 //     this.webkitRelativePath = ''; // Set to empty string if not used
 //   }

@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, Variants } from "framer-motion"
 import { useRef, type ReactNode } from "react"
 
 interface FadeInProps {
@@ -25,7 +25,7 @@ export default function FadeIn({
   const ref = useRef(null)
   const isInView = useInView(ref, { once })
 
-  const getDirectionOffset = () => {
+  const getDirectionOffset = (): { x?: number; y?: number } => {
     switch (direction) {
       case "up":
         return { y: distance }
@@ -40,7 +40,7 @@ export default function FadeIn({
     }
   }
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       ...getDirectionOffset(),
