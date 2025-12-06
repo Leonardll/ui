@@ -2,6 +2,9 @@
 const withImages = require("next-images")
 
 const nextConfig = withImages({
+    turbopack: {
+    // ...
+  },
     reactStrictMode: true,
     trailingSlash: true,
     distDir: "out",
