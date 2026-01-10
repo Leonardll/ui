@@ -6,9 +6,6 @@ const nextConfig = {
     reactStrictMode: true,
     trailingSlash: true,
     distDir: "out",
-    experimental: {
-        forceSwcTransforms: true,
-    },
     images: {
         //unoptimized: true,
         loader: "custom",
@@ -36,5 +33,5 @@ const nextConfig = {
             },
         ],
     },
-};
-module.exports = nextConfig;
+}
+module.exports = nextConfig

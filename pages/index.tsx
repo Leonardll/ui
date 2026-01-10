@@ -1,14 +1,38 @@
 import Hero from "@/components/hero";
 import About from "@/components/about";
 import Contact from "@/components/contact";
-import useSWR from "swr";
 import { useRef, useState, useEffect, RefObject } from "react";
 import Layout from "../components/layout";
 import Services from "@/components/myServices/services";
 import Stack from "@/components/myStack";
-const fetcher = async (url: string) => fetch(url).then((res) => res.json());
-export default function Home() {
-  const { data, error } = useSWR<{ data: any; data2: any }>("/api/hello", fetcher);
+import { GetStaticProps } from "next"; // Import GetStaticProps
+import { clientPromise } from "@/lib/mongodb"; // Import clientPromise
+
+// Define interfaces for data
+interface StackItem {
+  _id: string;
+  title: string;
+  url: string;
+  description?: string;
+  category?: string;
+  name: string;
+}
+
+interface PortfolioItem {
+  _id?: string;
+  imgSrc: string;
+  title: string;
+  description: string;
+  link: string;
+  github: string;
+}
+
+interface HomeProps {
+  data: StackItem[];
+  data2: PortfolioItem[];
+}
+
+export default function Home({ data, data2 }: HomeProps) { // Accept data as props
   const [position, setPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("");
   const [prevActiveSection, setPrevActiveSection] = useState("");
@@ -46,16 +70,42 @@ export default function Home() {
     setPrevActiveSection(activeSection);
   }, [activeSection]);
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return null;
+  if (!data || !data2) return null; // Or a loading spinner if preferred
 
   return (
     <Layout ref={mainRef} active={activeSection}>
       <Hero />
       <About ref={refs.about} />
       <Services ref={refs.services} />
-      <Stack ref={refs.stack} data={data.data} />
+      <Stack ref={refs.stack} data={data} /> {/* Pass data directly */}
       <Contact ref={refs.contact} />
     </Layout>
   );
 }
+
+// Add getStaticProps to fetch data at build time
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  try {
+    const client = await clientPromise;
+    const db = client.db("my_Database");
+    const data: StackItem[] = await db.collection<StackItem>("test").find({}).limit(30).toArray();
+    const data2: PortfolioItem[] = await db.collection<PortfolioItem>("portfolio").find({}).limit(30).toArray();
+
+    return {
+      props: {
+        data: JSON.parse(JSON.stringify(data)), // Serialize data
+        data2: JSON.parse(JSON.stringify(data2)), // Serialize data
+      },
+      revalidate: 60, // Revalidate every 60 seconds
+    };
+  } catch (e: any) {
+    console.error("Error fetching data in getStaticProps:", e);
+    return {
+      props: {
+        data: [],
+        data2: [],
+      },
+    };
+  }
+};
+

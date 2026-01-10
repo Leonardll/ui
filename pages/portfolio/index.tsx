@@ -1,35 +1,58 @@
-"use client";
+
 
 import Layout from "@/components/layout";
 import PortfolioHeader from "@/components/portfolio/portfolioHeader";
 import PortfolioGrid from "@/components/portfolio/portfolioGrid";
-import useSWR from "swr";
-import { useRef, RefObject } from "react";
+import { useRef } from "react";
+import { GetStaticProps } from "next";
+import { clientPromise } from "@/lib/mongodb";
 import type { PortfolioItem } from "@/types/portfolio";
+
 export const metadata = {
   title: "Portfolio - Modern Website Template",
   description: "Explore our portfolio of projects and case studies",
 };
 
-
-
-interface DataResponse {
-    data: any;
-    data2: PortfolioItem[];
+interface PortfolioPageProps {
+  portfolioItems: PortfolioItem[];
 }
 
-const fetcher = async (url: string) => fetch(url).then((res) => res.json());
-
-export default function PortfolioPage() {
-  const { data, error } = useSWR<DataResponse>("/api/hello", fetcher);
+export default function PortfolioPage({ portfolioItems }: PortfolioPageProps) {
   const mainRef = useRef<HTMLDivElement>(null);
 
-  if (error) return <div>Failed to load</div>;
-  if (!data) return null;
+  if (!portfolioItems) return null; // Or a loading spinner if preferred
+
   return (
     <Layout ref={mainRef}>
-        <PortfolioHeader />
-        <PortfolioGrid data={data.data2} />
+      <PortfolioHeader />
+      <PortfolioGrid data={portfolioItems} />
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
+  try {
+    const client = await clientPromise;
+    const db = client.db("my_Database");
+    const portfolioItems: PortfolioItem[] = await db
+      .collection<PortfolioItem>("portfolio")
+      .find({})
+      .limit(30)
+      .toArray();
+
+    return {
+      props: {
+        portfolioItems: JSON.parse(JSON.stringify(portfolioItems)), // Serialize data
+      },
+      revalidate: 60, // Revalidate every 60 seconds
+    };
+  } catch (e: any) {
+    console.error("Error fetching data in getStaticProps for PortfolioPage:", e);
+    return {
+      props: {
+        portfolioItems: [],
+      },
+    };
+  }
+};
+
