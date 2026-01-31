@@ -26,7 +26,7 @@ const contactInfo = [
   {
     icon: <MapPin className="h-6 w-6 text-primary" />,
     title: "Address",
-    details: "Between London and Barcelona",
+    details: "London",
   },
   {
     icon: <Mail className="h-6 w-6 text-primary" />,
@@ -59,7 +59,7 @@ const subFooterData = [
   {
     id: "location",
     title: "Location",
-    content: "London, United Kingdom",
+    content: "London",
   },
   {
     id: "aroundTheWeb",
