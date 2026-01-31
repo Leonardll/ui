@@ -1,14 +1,15 @@
 import Link from "next/link"
 import { X, Linkedin, Github } from "lucide-react"
 import { motion } from "framer-motion"
+import Logo from "../uiElemts/logo"
 
 export default function Footer() {
   return (
     <footer className="w-full glass border-t border-white/10 mt-auto">
       <div className="container mx-auto flex flex-col items-center justify-between gap-6 py-12 md:h-28 md:flex-row md:py-0 px-4 md:px-6">
         <div className="flex flex-col items-center gap-4 md:flex-row md:gap-4">
-          <Link href="/" className="font-display font-bold text-xl tracking-tight text-foreground uppercase">
-            Leonard <span className="text-primary truncate">Lator</span>
+          <Link href="/">
+            <Logo />
           </Link>
           <p className="text-center text-sm leading-loose text-muted-foreground md:text-left border-l border-white/10 pl-4">
             &copy; {new Date().getFullYear()} Leonard Lator. Pioneering the Digital Frontier.

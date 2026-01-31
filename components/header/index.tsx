@@ -15,6 +15,7 @@ import { Button } from "../uiElemts/button";
 import { useTheme } from "next-themes";
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
+import Logo from "../uiElemts/logo";
 export default function Header() {
   const pathname = usePathname();
   // Normalize pathname to remove trailing slash if necessary.
@@ -126,8 +127,8 @@ export default function Header() {
           whileTap={{ scale: 0.95 }}
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
-          <Link href="/" className="font-display font-bold text-2xl tracking-tight text-foreground uppercase">
-            Leonard <span className="text-primary truncate">Lator</span>
+          <Link href="/">
+            <Logo />
           </Link>
         </motion.div>
         {/* Mobile Menu Toggle */}
