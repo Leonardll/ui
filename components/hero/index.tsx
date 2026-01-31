@@ -16,51 +16,52 @@ export default function Hero() {
       </div>
 
       <div className="container relative z-10 px-4 md:px-6 mx-auto">
-        <div className="space-y-6 max-w-4xl">
-          <FadeIn direction="up">
-            <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-2 border border-primary/20">
-              Founder, Engineer & Active Trader
-            </span>
-          </FadeIn>
+        <div className="flex flex-col items-center space-y-12 text-center">
+          <div className="space-y-6 max-w-4xl">
+            <FadeIn direction="up">
+              <span className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary mb-2 border border-primary/20">
+                Founder, Engineer & Active Trader
+              </span>
+            </FadeIn>
 
-          <AnimatedText
-            text="Architecting the Future of Trading"
-            className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl font-display text-foreground leading-[1.1] tracking-[-0.01em]"
-          />
+            <AnimatedText
+              text="Architecting the Future of Trading"
+              className="text-4xl font-extrabold sm:text-5xl md:text-6xl lg:text-7xl font-display text-foreground leading-[1.1] tracking-[-0.01em]"
+            />
 
-          <FadeIn delay={0.4} direction="up">
-            <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl leading-relaxed">
-              Engineering institutional-grade
-              <span className="text-foreground font-semibold"> FinTech, </span>
-              <span className="text-foreground font-semibold"> Web3, </span>
-              and high-performance
-              <span className="text-foreground font-semibold"> Modern Apps </span>
-              informed by a career in professional trading.
-            </p>
+            <FadeIn delay={0.4} direction="up">
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl lg:text-2xl leading-relaxed">
+                Engineering institutional-grade
+                <span className="text-foreground font-semibold"> FinTech, </span>
+                <span className="text-foreground font-semibold"> Web3, </span>
+                and high-performance
+                <span className="text-foreground font-semibold"> Modern Apps </span>
+                informed by a career in professional trading.
+              </p>
+            </FadeIn>
+          </div>
+
+          <FadeIn delay={0.6} direction="up">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button asChild size="lg" className="rounded-full px-8 h-12 text-lg shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+                <Link href="#contact">
+                  Let&apos;s Build
+                </Link>
+              </Button>
+              <Button variant="outline" size="lg" asChild className="rounded-full px-8 h-12 text-lg glass transition-all hover:bg-background/80 hover:scale-105 active:scale-95">
+                <Link href="#portfolio">
+                  View Work
+                </Link>
+              </Button>
+            </div>
           </FadeIn>
         </div>
-
-        <FadeIn delay={0.6} direction="up">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button asChild size="lg" className="rounded-full px-8 h-12 text-lg shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
-              <Link href="#contact">
-                Let&apos;s Build
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild className="rounded-full px-8 h-12 text-lg glass transition-all hover:bg-background/80 hover:scale-105 active:scale-95">
-              <Link href="#portfolio">
-                View Work
-              </Link>
-            </Button>
-          </div>
-        </FadeIn>
       </div>
-    </div>
 
-      {/* Scroll Indicator */ }
-  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
-    <div className="w-1 h-12 rounded-full bg-gradient-to-b from-primary to-transparent" />
-  </div>
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+        <div className="w-1 h-12 rounded-full bg-gradient-to-b from-primary to-transparent" />
+      </div>
     </section >
   )
 }
