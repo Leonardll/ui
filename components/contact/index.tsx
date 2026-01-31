@@ -123,53 +123,55 @@ function FormItems({ formik }: FormItemsProps) {
   const { errors, touched } = formik;
 
   return (
-    <>
-      {inputData.map((input, index) => {
+    <div className="space-y-6">
+      {inputData.map((input) => {
         return input.placeholder === "Message" ? (
-          <div key={input.id}>
+          <div key={input.id} className="space-y-1">
             <Textarea
               id={input.name}
               name={input.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              className="bg-transparent form-textarea placeholder-muted-foreground w-full min-h-[120px] focus:outline-0   focus:ring-transparent focus:border-muted focus:border-opacity-50"
               placeholder={input.placeholder}
               aria-label={input.ariaLabel}
               value={formik.values[input.name]}
+              className="min-h-[150px]"
             />
             {errors[input.name] && touched[input.name] && (
-              <div className="flex w-full   items-center content-center">
-                <p className="text-base p-3 capitalize text-red-700 font-medium ">
-                  {errors[input.name]}
-                </p>
-              </div>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm px-2 text-destructive font-medium"
+              >
+                {errors[input.name]}
+              </motion.p>
             )}
           </div>
         ) : (
-          <div key={input.id}>
+          <div key={input.id} className="space-y-1">
             <Input
               id={input.name}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               name={input.name}
-              className=" bg-transparent form-input placeholder-muted-foreground w-full   focus:border-transparant focus:ring-transparent focus:ring-opacity-20 focus:border-muted focus:border-opacity-50"
               type={input.type}
               placeholder={input.placeholder}
               aria-label={input.ariaLabel}
               value={formik.values[input.name]}
             />
-
-            {errors[input.name] && touched[input.name] ? (
-              <div className="flex w-full   items-center content-center">
-                <p className="text-base p-3 capitalize text-red-700 font-medium ">
-                  {errors[input.name]}
-                </p>
-              </div>
-            ) : null}
+            {errors[input.name] && touched[input.name] && (
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-sm px-2 text-destructive font-medium"
+              >
+                {errors[input.name]}
+              </motion.p>
+            )}
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
 
@@ -182,69 +184,95 @@ function Formbutton({ formik }: FormbuttonProps) {
     <Button
       onClick={formik.handleSubmit}
       type="submit"
-      className=" w-full text-xl font-semibold  transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 "
+      disabled={formik.isSubmitting}
+      className="w-full text-lg h-14 font-bold rounded-2xl shadow-lg shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98] mt-6"
     >
-      Send{" "}
+      {formik.isSubmitting ? "Sending Project Data..." : "Send Message"}
     </Button>
   );
 }
 
 
 interface ContactFormValues {
-    name: string;
-    email: string;
-    subject: string;
-    message: string;
-    created: string;
-  }
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+  created: string;
+}
 
-const Contact = forwardRef<HTMLElement, {}>( (props, ref) => {
+const Contact = forwardRef<HTMLElement, {}>((props, ref) => {
 
   return (
-    <section ref={ref} id="contact" className="py-12 md:py-24 lg:py-32 bg-background">
-      <div className="w-full px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
+    <section ref={ref} id="contact" className="w-full py-24 bg-background overflow-hidden">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
+          <div className="space-y-4">
             <FadeIn direction="up">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Contact Us</div>
+              <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20">
+                Get in Touch
+              </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.1}>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Get in Touch</h2>
+              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl font-display text-foreground">
+                Let&apos;s Build Something Extraordinary
+              </h2>
             </FadeIn>
             <FadeIn direction="up" delay={0.2}>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Have a question or want to work together? Reach out to us.
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl leading-relaxed">
+                Have a question or want to work together? I&apos;m always open to discussing new projects,
+                creative ideas or opportunities to be part of your visions.
               </p>
             </FadeIn>
           </div>
         </div>
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-6 lg:grid-cols-2 mt-12">
-          <StaggerContainer className="space-y-6" delay={0.3} staggerChildren={0.1}>
-            {contactInfo.map((info, index) => (
-              <StaggerItem key={index}>
-                <motion.div
-                  className="flex items-center gap-4"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {info.icon}
-                  <div>
-                    <h3 className="font-semibold">{info.title}</h3>
-                    <p className="text-muted-foreground">{info.details}</p>
-                  </div>
-                </motion.div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 lg:grid-cols-2">
+          <div className="space-y-8">
+            <StaggerContainer className="grid gap-6" delay={0.3} staggerChildren={0.1}>
+              {contactInfo.map((info, index) => (
+                <StaggerItem key={index}>
+                  <motion.div
+                    className="flex items-center gap-6 p-6 rounded-2xl bg-muted/30 border border-border/50 group hover:bg-muted/50 transition-all"
+                    whileHover={{ x: 10 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                  >
+                    <div className="bg-primary/10 p-4 rounded-xl text-primary border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                      {info.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold font-display">{info.title}</h3>
+                      <p className="text-muted-foreground text-lg">{info.details}</p>
+                    </div>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+
+            <div className="p-8 rounded-3xl bg-primary/5 border border-primary/10">
+              <h3 className="text-xl font-bold font-display mb-4">Social Presence</h3>
+              <div className="flex gap-4">
+                {footerLinks.map((link) => (
+                  <Button key={link.id} variant="outline" size="lg" asChild className="rounded-2xl glass hover:scale-110 transition-transform">
+                    <a href={link.link} target="_blank" rel="noopener noreferrer">
+                      {link.id === 'github' ? <FaGithub className="h-5 w-5 mr-2" /> : <FaLinkedinIn className="h-5 w-5 mr-2" />}
+                      {link.title}
+                    </a>
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <FadeIn direction="left" delay={0.4}>
-            <Card>
-              <CardHeader>
-                <CardTitle>Send us a message</CardTitle>
-                <CardDescription>
-                  Fill out the form below and we&apos;ll get back to you as soon as possible.
+            <Card className="glass-card border-white/10 p-2 overflow-hidden">
+              <CardHeader className="p-6">
+                <CardTitle className="text-2xl font-display">Message Me</CardTitle>
+                <CardDescription className="text-base">
+                  I typically respond within 24 hours.
                 </CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="p-6 pt-0">
                 <Formik
                   initialValues={{
                     name: "",

@@ -3,17 +3,23 @@ import FadeIn from "@/components/animations/fade-in";
 
 export default function PortfolioHeader() {
   return (
-    <div className="flex flex-col items-center justify-center space-y-4 text-center">
-      <div className="space-y-2">
+    <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16 px-4">
+      <div className="space-y-4">
         <FadeIn direction="up">
-          <div className="inline-block rounded-lg bg-background px-3 py-3 text-sm">Portfolio</div>
+          <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20">
+            The Journey
+          </div>
         </FadeIn>
         <FadeIn direction="up" delay={0.1}>
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Recent Projects</h2>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl font-display text-foreground">
+            Progression & Interests
+          </h1>
         </FadeIn>
         <FadeIn direction="up" delay={0.2}>
-          <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-            A selection of our most recent projects, showcasing our expertise in web design and development.
+          <p className="mx-auto max-w-[800px] text-muted-foreground md:text-xl leading-relaxed">
+            A non-linear display of the experiments, projects, and deep-dives that shaped my career.
+            From early code explorations to institutional fintech—this isn&apos;t about perfection, but the
+            progression of interests that lead to today.
           </p>
         </FadeIn>
       </div>

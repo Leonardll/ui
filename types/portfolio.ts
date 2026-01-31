@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb";
 export interface PortfolioItem {
   _id?: string | ObjectId; // Allow _id to be a string (client-side) or ObjectId (database-side)
   imgSrc: string;
+  ogImage?: string;
   title: string;
   description: string;
   link?: string;

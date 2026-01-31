@@ -34,15 +34,16 @@ export default function PortfolioItem({ item }: PortfolioItemProps) {
       <motion.div
         whileHover={{ y: -10 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        className="h-full"
       >
-        <Card className="overflow-hidden group h-full">
+        <Card className="overflow-hidden group h-full flex flex-col">
           <div className="relative overflow-hidden">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.5 }}
             >
               <Image
-                src={item.imgSrc || "/placeholder.svg"}
+                src={item.imgSrc || item.ogImage || "/placeholder.svg"}
                 alt={item.title}
                 width={600}
                 height={400}
@@ -80,8 +81,7 @@ export default function PortfolioItem({ item }: PortfolioItemProps) {
               )}
             </motion.div>
           </div>
-          <CardHeader className="p-4 pb-2">
-            {/*added padding bottom to header*/}
+          <CardHeader className="p-4 pb-2 flex-grow">
             <CardTitle className="text-xl">{item.title}</CardTitle>
             <CardDescription>{item.shortDescription}</CardDescription>
           </CardHeader>
@@ -112,7 +112,7 @@ export default function PortfolioItem({ item }: PortfolioItemProps) {
             transition={{ duration: 0.5 }}
           >
             <Image
-              src={item.imgSrc || "/placeholder.svg"}
+              src={item.imgSrc || item.ogImage || "/placeholder.svg"}
               alt={item.title}
               width={1200}
               height={675}

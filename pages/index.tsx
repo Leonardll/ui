@@ -10,12 +10,12 @@ import { clientPromise } from "@/lib/mongodb"; // Import clientPromise
 
 // Define interfaces for data
 interface StackItem {
-  _id: string;
-  title: string;
-  url: string;
-  description?: string;
-  category?: string;
+  _id?: string;
+  id?: string;
   name: string;
+  url: string | null;
+  description: string;
+  category: string;
 }
 
 interface PortfolioItem {
@@ -30,9 +30,10 @@ interface PortfolioItem {
 interface HomeProps {
   data: StackItem[];
   data2: PortfolioItem[];
+  isError?: boolean;
 }
 
-export default function Home({ data, data2 }: HomeProps) { // Accept data as props
+export default function Home({ data, data2, isError }: HomeProps) { // Accept data as props
   const [position, setPosition] = useState(0);
   const [activeSection, setActiveSection] = useState("");
   const [prevActiveSection, setPrevActiveSection] = useState("");
@@ -77,7 +78,7 @@ export default function Home({ data, data2 }: HomeProps) { // Accept data as pro
       <Hero />
       <About ref={refs.about} />
       <Services ref={refs.services} />
-      <Stack ref={refs.stack} data={data} /> {/* Pass data directly */}
+      <Stack ref={refs.stack} data={data} isError={isError} /> {/* Pass data directly */}
       <Contact ref={refs.contact} />
     </Layout>
   );
@@ -87,7 +88,7 @@ export default function Home({ data, data2 }: HomeProps) { // Accept data as pro
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   try {
     const client = await clientPromise;
-    const db = client.db("my_Database");
+    const db = client.db(process.env.MONGODB_DB);
     const data: StackItem[] = await db.collection<StackItem>("test").find({}).limit(30).toArray();
     const data2: PortfolioItem[] = await db.collection<PortfolioItem>("portfolio").find({}).limit(30).toArray();
 
@@ -95,6 +96,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         data: JSON.parse(JSON.stringify(data)), // Serialize data
         data2: JSON.parse(JSON.stringify(data2)), // Serialize data
+        isError: false,
       },
       revalidate: 60, // Revalidate every 60 seconds
     };
@@ -104,6 +106,7 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
       props: {
         data: [],
         data2: [],
+        isError: true,
       },
     };
   }

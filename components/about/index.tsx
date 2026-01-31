@@ -27,65 +27,97 @@ function Avatar() {
 // Add forwardRef and specify the ref type
 const About = forwardRef<HTMLElement>((props, ref) => {
   const features = [
-    "Responsive design for all devices",
-    "Modern, clean code architecture",
-    "Performance optimized for speed",
+    "Institutional-Grade Fintech Tools",
+    "Active Futures & Crypto Trader",
+    "Web3 & Smart Contract Wizardry",
+    "Music Rights & Licensing Expert",
   ];
 
   return (
-    <section ref={ref} id="about" className="w-full py-12 md:py-24 lg:py-32 bg-background">
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-          <div className="space-y-4">
-            <FadeIn direction="up">
-              <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">About Me</div>
-            </FadeIn>
-            <FadeIn direction="up" delay={0.1}>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                I build beautiful digital experiences
-              </h2>
-            </FadeIn>
-            <FadeIn direction="up" delay={0.2}>
-              <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                My skills combines creativity and technical expertise to deliver stunning websites and
-                applications that drive results.
-              </p>
-            </FadeIn>
+    <section ref={ref} id="about" className="w-full py-24 bg-background overflow-hidden">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="grid gap-12 lg:grid-cols-2 items-center">
+          <div className="space-y-8 order-2 lg:order-1">
+            <div className="space-y-4">
+              <FadeIn direction="up">
+                <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20">
+                  Behind the Code
+                </div>
+              </FadeIn>
+              <FadeIn direction="up" delay={0.1}>
+                <h2 className="text-4xl font-bold tracking-tight sm:text-5xl font-display text-foreground">
+                  Fusing Finance, Code, and Strategy
+                </h2>
+              </FadeIn>
+              <FadeIn direction="up" delay={0.2}>
+                <p className="text-muted-foreground md:text-xl leading-relaxed">
+                  I operate at the intersection of capital markets and high-performance engineering. My journey is rooted in
+                  <span className="text-foreground font-semibold"> Futures and Crypto trading</span>, specifically focusing on Prop Firm environments and technical analysis.
+                  This dual lens allows me to build tools like <span className="text-foreground font-semibold"> TradeStrata </span>
+                  that solve real problems for serious traders.
+                </p>
+              </FadeIn>
+            </div>
+
             <StaggerContainer delay={0.3} staggerChildren={0.1}>
-              <div className="space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {features.map((feature, index) => (
                   <StaggerItem key={index}>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-primary" />
-                      <span>{feature}</span>
+                    <div className="flex items-center gap-3 bg-muted/30 p-4 rounded-2xl border border-border/50 transition-colors hover:bg-muted/50">
+                      <div className="bg-primary/10 p-1 rounded-full">
+                        <CheckCircle className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="font-medium text-foreground/80">{feature}</span>
                     </div>
                   </StaggerItem>
                 ))}
               </div>
             </StaggerContainer>
+
             <FadeIn direction="up" delay={0.6}>
-              <Button asChild>
-                <motion.a
-                  href="#services"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                >
-                  My Services
-                </motion.a>
-              </Button>
+              <div className="flex gap-4">
+                <Button asChild size="lg" className="rounded-full px-8">
+                  <motion.a
+                    href="#services"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    My Services
+                  </motion.a>
+                </Button>
+                <Button variant="outline" size="lg" className="rounded-full px-8 glass border-primary/20" asChild>
+                  <motion.a
+                    href="https://www.linkedin.com/in/leonardlator/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    LinkedIn
+                  </motion.a>
+                </Button>
+              </div>
             </FadeIn>
           </div>
-          <FadeIn direction="left" delay={0.4} className="mx-auto lg:order-last">
-            <motion.div whileHover={{ scale: 1.02 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-              <Avatar />
+
+          <FadeIn direction="left" delay={0.4} className="order-1 lg:order-2 flex justify-center">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="relative p-2"
+            >
+              <div className="absolute inset-0 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+              <div className="relative glass p-1 rounded-full border-2 border-primary/30 shadow-2xl">
+                <Avatar />
+              </div>
             </motion.div>
           </FadeIn>
         </div>
       </div>
     </section>
   );
-});
+}
+);
 
 export default About;
 About.displayName = 'About'; 

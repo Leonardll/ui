@@ -3,7 +3,7 @@ import cookie from "cookie";
 import { clientPromise } from "@/lib/mongodb";
 import sendgrid from "@sendgrid/mail";
 
-sendgrid.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY || "");
+sendgrid.setApiKey(process.env.SENDGRID_API_KEY || "");
 
 interface ContactData {
   Name: string;
@@ -50,7 +50,7 @@ export default async function handler(
       };
 
       const client = await clientPromise;
-      const db = client.db(process.env.NEXT_PUBLIC_MONGODB_DB);
+      const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection("messages");
       await collection.insertOne(data);
       await sendgrid.send(mailData);

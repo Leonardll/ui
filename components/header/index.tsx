@@ -46,7 +46,7 @@ export default function Header() {
 
   useEffect(() => {
     setMounted(true);
-    Events.scrollEvent.register("begin", function (to, element) {});
+    Events.scrollEvent.register("begin", function (to, element) { });
     Events.scrollEvent.register("end", function (to, element) {
       if (to) {
         setActiveSection(to);
@@ -80,7 +80,7 @@ export default function Header() {
   // IntersectionObserver for homepage sections
   useEffect(() => {
     if (normalizedPathname !== "/") return;
-    
+
     const sectionIds = routes
       .filter((route) => route.href.startsWith("#"))
       .map((route) => route.href.substring(1));
@@ -99,14 +99,14 @@ export default function Header() {
       },
       { threshold: 0.6 }
     );
-    
+
     sectionIds.forEach((id) => {
       const element = document.getElementById(id);
       if (element) {
         observer.observe(element);
       }
     });
-    
+
     return () => {
       observer.disconnect();
     };
@@ -117,16 +117,18 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-0 w-full h-16 z-50 border-b bg-background/95 backdrop-blur-sm">
-      <nav className="container flex items-center h-full px-4 md:px-6 gap-6">
-      <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 400, damping: 17 }}
-          >
-        <Link href="/" className="font-bold text-xl">
-        Leo&apos;s Digital Home
-        </Link>
+    <header className="fixed top-0 left-0 right-0 z-50 h-20 transition-all duration-300 glass border-b border-white/10">
+      <nav className="container mx-auto px-4 md:px-6 flex items-center justify-between h-full">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ type: "spring", stiffness: 400, damping: 17 }}
+        >
+          <Link href="/" className="font-display font-bold text-2xl tracking-tight text-foreground uppercase">
+            Leonard <span className="text-primary truncate">Lator</span>
+          </Link>
         </motion.div>
         {/* Mobile Menu Toggle */}
         <div className="md:hidden ml-auto">
@@ -168,11 +170,11 @@ export default function Header() {
                     >
                       {route.label}
                       {isActive && (
-                        <motion.div 
-                        layoutId="underline"
-                        transition={{ type: "spring", stiffness: 300, damping: 30 } }
+                        <motion.div
+                          layoutId="underline"
+                          transition={{ type: "spring", stiffness: 300, damping: 30 }}
                         >
-                        <span className="absolute -bottom-3.5 left-0 right-0 h-0.5  bg-primary" />
+                          <span className="absolute -bottom-3.5 left-0 right-0 h-0.5  bg-primary" />
                         </motion.div>
                       )}
                     </LinkScroll>
@@ -202,13 +204,13 @@ export default function Header() {
                   >
                     {route.label}
                     {isActive && (
-                      <motion.div 
-                      layoutId="underline"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 } }
+                      <motion.div
+                        layoutId="underline"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
                       >
                         <span className="absolute -bottom-3.5 left-0 right-0 h-0.5  bg-primary" />
                       </motion.div>
-                      )}
+                    )}
                   </Link>
                 )}
               </div>
@@ -283,7 +285,7 @@ export default function Header() {
                         )}
                       >
                         {route.label}
-                    
+
                       </LinkScroll>
                     ) : (
                       <Link
@@ -310,7 +312,7 @@ export default function Header() {
                       )}
                     >
                       {route.label}
-                    
+
                     </Link>
                   )}
                 </div>

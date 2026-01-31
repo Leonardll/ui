@@ -8,16 +8,14 @@ import { GetStaticProps } from "next";
 import { clientPromise } from "@/lib/mongodb";
 import type { PortfolioItem } from "@/types/portfolio";
 
-export const metadata = {
-  title: "Portfolio - Modern Website Template",
-  description: "Explore our portfolio of projects and case studies",
-};
+
 
 interface PortfolioPageProps {
   portfolioItems: PortfolioItem[];
+  isError?: boolean;
 }
 
-export default function PortfolioPage({ portfolioItems }: PortfolioPageProps) {
+export default function PortfolioPage({ portfolioItems, isError }: PortfolioPageProps) {
   const mainRef = useRef<HTMLDivElement>(null);
 
   if (!portfolioItems) return null; // Or a loading spinner if preferred
@@ -25,7 +23,7 @@ export default function PortfolioPage({ portfolioItems }: PortfolioPageProps) {
   return (
     <Layout ref={mainRef}>
       <PortfolioHeader />
-      <PortfolioGrid data={portfolioItems} />
+      <PortfolioGrid data={portfolioItems} isError={isError} />
     </Layout>
   );
 }
@@ -33,7 +31,7 @@ export default function PortfolioPage({ portfolioItems }: PortfolioPageProps) {
 export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
   try {
     const client = await clientPromise;
-    const db = client.db("my_Database");
+    const db = client.db(process.env.MONGODB_DB);
     const portfolioItems: PortfolioItem[] = await db
       .collection<PortfolioItem>("portfolio")
       .find({})
@@ -43,6 +41,7 @@ export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
     return {
       props: {
         portfolioItems: JSON.parse(JSON.stringify(portfolioItems)), // Serialize data
+        isError: false,
       },
       revalidate: 60, // Revalidate every 60 seconds
     };
@@ -51,6 +50,7 @@ export const getStaticProps: GetStaticProps<PortfolioPageProps> = async () => {
     return {
       props: {
         portfolioItems: [],
+        isError: true,
       },
     };
   }

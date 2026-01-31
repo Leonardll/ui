@@ -11,44 +11,73 @@ import { PortfolioItem, PortfolioItemWithId } from "@/types/portfolio"; // Impor
 
 interface PortfolioGridProps {
   data: PortfolioItem[];
+  isError?: boolean;
 }
 
-export default function PortfolioGrid({ data }: PortfolioGridProps) {
+export default function PortfolioGrid({ data, isError }: PortfolioGridProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (data && data.length > 0) {
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    } else {
-      setIsLoading(true);
-    }
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [data]);
 
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-background">
-      <div className="container px-4 md:px-6">
+    <section className="w-full py-20 bg-background/50 backdrop-blur-sm">
+      <div className="container px-4 md:px-6 mx-auto">
         {isLoading ? (
-          <div className="flex justify-center items-center h-40">
-            <Loader2 className="h-10 w-10 animate-spin" />
+          <div className="flex flex-col justify-center items-center h-64 space-y-4">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            <p className="text-muted-foreground animate-pulse font-medium">Loading masterpieces...</p>
           </div>
-        ) : (
-          <motion.div>
+        ) : isError ? (
+          <div className="flex flex-col justify-center items-center h-64 text-center space-y-4 border-2 border-dashed border-destructive/30 rounded-2xl bg-destructive/5">
+            <div className="bg-destructive/10 p-4 rounded-full">
+              <span className="text-2xl">📡</span>
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-semibold tracking-tight text-destructive">Connection Interrupted</h3>
+              <p className="text-muted-foreground max-w-[400px]">
+                I&apos;m having trouble connecting to the showcase gallery.
+                Please try refreshing the page in a moment.
+              </p>
+            </div>
+          </div>
+        ) : data && data.length > 0 ? (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+          >
             <StaggerContainer
-              className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
               staggerChildren={0.1}
             >
-              {data?.map((item) => {
+              {data.map((item) => {
                 const key =
                   typeof item._id === "object" ? item._id.toString() : item._id;
 
                 return (
-                  <StaggerItem key={key}>
+                  <StaggerItem key={key} className="h-full">
                     <PortfolioItemComponent item={item} />
                   </StaggerItem>
                 );
               })}
             </StaggerContainer>
           </motion.div>
+        ) : (
+          <div className="flex flex-col justify-center items-center h-64 text-center space-y-4 border-2 border-dashed border-border rounded-2xl bg-muted/30">
+            <div className="bg-primary/10 p-4 rounded-full">
+              <Loader2 className="h-8 w-8 text-primary/50" />
+            </div>
+            <div className="space-y-1">
+              <h3 className="text-xl font-semibold tracking-tight">Focusing the Lens</h3>
+              <p className="text-muted-foreground max-w-[300px]">New projects are being prepared for showcase. Stay tuned!</p>
+            </div>
+          </div>
         )}
       </div>
     </section>

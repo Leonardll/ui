@@ -13,59 +13,71 @@ const Services = forwardRef<HTMLElement>((props, ref) => {
   const services = [
     {
       icon: <Layout className="h-8 w-8 text-primary" />,
-      title: "Web Design",
-      description: "Beautiful, responsive websites that engage your audience and represent your brand effectively.",
+      title: "Product Architecture",
+      description: "Designing end-to-end systems for capital-heavy environments, focusing on scalability, security, and institutional performance.",
     },
     {
       icon: <Code className="h-8 w-8 text-primary" />,
-      title: "Web Development",
-      description: "Custom web applications built with modern technologies for optimal performance and scalability.",
+      title: "Advanced Development",
+      description: "Building high-performance applications with Next.js, TypeScript, and robust backend engineering for seamless execution.",
     },
     {
       icon: <Globe className="h-8 w-8 text-primary" />,
-      title: "SEO Optimization",
-      description: "Optimizing your website to rank higher on search engines and drive organic traffic to your site.",
+      title: "FinTech Solutions",
+      description: "Architecting trading journals, risk engines, and financial analytics tools that harmonize performance and psychology.",
     },
     {
       icon: <Link className="h-8 w-8 text-primary" />,
-      title: "Smart Contract Integration",
-      description: "Making the brigde between web3 and web2, I can help you integrate smart contracts into your applications.",
+      title: "Web3 & DeFi Wizardry",
+      description: "Bridging the gap between Web3 and Web2 with smart contract integration and decentralized protocol expertise.",
     },
   ];
 
   return (
-    <section ref={ref} id="services" className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
+    <section ref={ref} id="services" className="w-full py-24 bg-muted/50 transition-colors duration-500">
+      <div className="container px-4 md:px-6 mx-auto">
+        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-16">
+          <div className="space-y-4">
             <FadeIn direction="up">
-              <div className="inline-block rounded-lg bg-background px-3 py-1 text-sm">My Services</div>
+              <div className="inline-block rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20">
+                My Expertise
+              </div>
             </FadeIn>
             <FadeIn direction="up" delay={0.1}>
-              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">What I Bring</h2>
+              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl font-display">
+                What I Bring to the Table
+              </h2>
             </FadeIn>
             <FadeIn direction="up" delay={0.2}>
-              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl leading-relaxed">
                 I provide comprehensive digital solutions to help your business thrive in the digital landscape.
               </p>
             </FadeIn>
           </div>
         </div>
         <StaggerContainer
-          className="mx-auto grid max-w-5xl grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12"
+          className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           delay={0.3}
           staggerChildren={0.15}
         >
           {services.map((service, index) => (
             <StaggerItem key={index}>
-              <motion.div whileHover={{ y: -10 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
-                <Card className="h-full transition-all duration-300 hover:shadow-lg">
-                  <CardHeader className="flex flex-row items-center gap-4 pb-2">
-                    {service.icon}
-                    <CardTitle className="text-xl">{service.title}</CardTitle>
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="h-full"
+              >
+                <Card className="h-full glass-card hover:bg-card/80 transition-all border-white/10 flex flex-col">
+                  <CardHeader className="flex flex-col gap-4 pb-4">
+                    <div className="bg-primary/10 w-12 h-12 rounded-2xl flex items-center justify-center border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                      {service.icon}
+                    </div>
+                    <CardTitle className="text-2xl font-display">{service.title}</CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-base">{service.description}</CardDescription>
+                  <CardContent className="flex-grow">
+                    <CardDescription className="text-base text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </CardDescription>
                   </CardContent>
                 </Card>
               </motion.div>
@@ -75,6 +87,7 @@ const Services = forwardRef<HTMLElement>((props, ref) => {
       </div>
     </section>
   );
-});
+}
+);
 Services.displayName = "Services";
 export default Services;

@@ -6,20 +6,26 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
     return (
         <>
             <Head>
-                <title>Leo&apos;s Digital Home</title>
+                <title>Leonard Lator | Founder, Trader & Engineer</title>
+                <meta
+                    name="description"
+                    content="Official portfolio of Leonard Lator. Founder of TradeStrata, Institutional Trader, and Full Stack Engineer specializing in FinTech and Web3 solutions."
+                />
+                <meta property="og:title" content="Leonard Lator | Founder, Trader & Engineer" />
                 <meta
                     property="og:description"
-                    name="description"
-                    content="Leonard Lator - Full Stack Developer | Building Web Applications and Innovative Solutions"
+                    content="Official portfolio of Leonard Lator. Founder of TradeStrata, Institutional Trader, and Full Stack Engineer specializing in FinTech and Web3 solutions."
                 />
-                <meta property="og:title" name="title" content="Leo's Digital Home" />
                 <meta
-                    name="image"
                     property="og:image"
-                    content="https://www.leonardlator.dev/api/og"
+                    content="/og-image.png"
                 />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Leonard Lator | Founder, Trader & Engineer" />
+                <meta name="twitter:description" content="Engineering the future of capital and code." />
+                <meta name="twitter:image" content="/og-image.png" />
                 <meta name="author" content="Leonard Lator" />
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
             </Head>
             <Component {...pageProps} />
             <Analytics />
