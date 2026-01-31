@@ -44,14 +44,18 @@ export default function AnimatedText({ text, className = "", once = true, delay 
   return (
     <motion.div
       ref={ref}
-      className={`inline-block ${className}`}
+      className={`block ${className}`}
       variants={container}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
       {words.map((word, index) => (
-        <motion.span key={index} className="inline-block mr-1" variants={child}>
-          {word}
+        <motion.span
+          key={index}
+          className="inline-block whitespace-pre"
+          variants={child}
+        >
+          {word}{index !== words.length - 1 && " "}
         </motion.span>
       ))}
     </motion.div>
