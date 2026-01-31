@@ -18,12 +18,12 @@ function MyApp({ Component, pageProps }: { Component: any; pageProps: any }) {
                 />
                 <meta
                     property="og:image"
-                    content="/og-image.png"
+                    content="/og-image-v4.png"
                 />
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:title" content="Leonard Lator | Founder, Trader & Engineer" />
                 <meta name="twitter:description" content="Engineering the future of capital and code." />
-                <meta name="twitter:image" content="/og-image.png" />
+                <meta name="twitter:image" content="/og-image-v4.png" />
                 <meta name="author" content="Leonard Lator" />
                 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
             </Head>
