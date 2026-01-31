@@ -56,7 +56,7 @@ const Services = forwardRef<HTMLElement>((props, ref) => {
           </div>
         </div>
         <StaggerContainer
-          className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
+          className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4"
           delay={0.3}
           staggerChildren={0.15}
         >
