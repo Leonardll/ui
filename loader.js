@@ -1,3 +1,4 @@
 export default function myImageLoader({ src, width, quality }) {
-    return `${src}?w=${width}&q=${quality || 75}`
+    const separator = src.includes('?') ? '&' : '?'
+    return `${src}${separator}w=${width}&q=${quality || 75}`
 }

@@ -32,7 +32,7 @@ async function run() {
                 "Voice Journaling"
             ],
             // Demonstrating the ogImage logic
-            ogImage: "https://app.tradestrata.net/opengraph-image.png?opengraph-image.0620dbf3.png",
+            ogImage: "https://app.tradestrata.net/opengraph-image?fda9a8cbd2545561",
             imgSrc: "", // Explicitly empty to test fallback to ogImage
             order: 0
         };
