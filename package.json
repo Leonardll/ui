@@ -59,7 +59,7 @@
   },
   "pnpm": {
     "overrides": {
-      "fast-xml-parser": "5.3.4",
+      "fast-xml-parser": "5.3.6",
       "axios": "^1.7.9"
     }
   },
